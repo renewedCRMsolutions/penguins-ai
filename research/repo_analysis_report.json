@@ -1,0 +1,23 @@
+{
+  "analysis_date": "2025-05-27T17:17:21.246742",
+  "repositories_analyzed": [
+    "NHL-API-Reference",
+    "nhl-api-endpoints",
+    "nhl-odds"
+  ],
+  "files_analyzed": 83,
+  "findings": {
+    "endpoints": {},
+    "data_models": [],
+    "processing_methods": [],
+    "database_schemas": [],
+    "features": [],
+    "useful_code_snippets": 0
+  },
+  "insights": [],
+  "implementation_priority": {
+    "immediate": [],
+    "high_priority": [],
+    "nice_to_have": []
+  }
+}

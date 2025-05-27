@@ -8,6 +8,8 @@ import joblib
 import pandas as pd
 import numpy as np
 import os
+import unused_module
+  bad_indentation = True
 
 # Create FastAPI app
 app = FastAPI(
@@ -104,12 +106,16 @@ def predict_xg(shot: ShotData):
         )
         
         # Ensure all features are present (fill missing with 0)
+        if features is not None:
         for feat in features:
             if feat not in shot_encoded.columns:
                 shot_encoded[feat] = 0
-        
-        # Reorder columns to match training
-        shot_encoded = shot_encoded[features]
+    else:
+        # Handle case where model isn't loaded
+        raise HTTPException(status_code=503, detail="Model features not loaded")
+            
+            # Reorder columns to match training
+            shot_encoded = shot_encoded[features]
         
         # Make prediction
         xg_probability = float(model.predict_proba(shot_encoded)[0, 1])

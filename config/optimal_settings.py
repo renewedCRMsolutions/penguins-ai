@@ -12,18 +12,14 @@ SYSTEM_OPTIMAL_CONFIG = {
     
     # Model Complexity (based on your powerful system)
     'xgboost_config': {
-        'n_estimators': 1000,
-        'max_depth': 12,
+        'n_estimators': 1000,  # More trees
+        'max_depth': 12,       # Deeper trees
         'learning_rate': 0.01,
-        'n_jobs': 20,
-        # GPU parameters will be added dynamically if use_gpu=True
-        'subsample': 0.8,
-        'colsample_bytree': 0.8,
-        'random_state': 42
+        'n_jobs': 20
     },
     
     # GPU Settings
-    'use_gpu': True,  # This flag triggers GPU mode
+    'use_gpu': True,
     'gpu_memory_fraction': 0.8,  # Use 80% of GPU memory
     
     # Data Processing
