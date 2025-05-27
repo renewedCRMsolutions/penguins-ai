@@ -1,0 +1,16 @@
+# File: requirements.txt
+# Create this file in your penguins_ai directory
+
+# Core ML libraries (use newer versions that have wheels for Windows)
+scikit-learn
+xgboost
+pandas
+numpy
+fastapi
+uvicorn
+plotly
+requests
+joblib
+
+# Database
+psycopg2-binary
