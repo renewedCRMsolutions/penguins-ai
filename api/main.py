@@ -34,8 +34,8 @@ model_info = None
 def load_model():
     global model, features, model_info
     try:
-        model = joblib.load('models/xg_model.pkl')
-        features = joblib.load('models/xg_features.pkl')
+        model = joblib.load('models/production/xg_model_nhl.pkl')
+        features = joblib.load('models/production/xg_features_nhl.pkl')
         model_info = joblib.load('models/model_info.pkl')
         print("✓ Model loaded successfully")
     except Exception as e:

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PenguinsAnalyticsSystem version="1.0">
+    
+    <!-- Data Pipeline Configuration -->
+    <DataPipeline>
+        <DataSources>
+            <Source id="nhl_api" type="rest_api">
+                <endpoint>https://api-web.nhle.com/v1/</endpoint>
+                <refresh_interval>300</refresh_interval>
+                <data_types>
+                    <type>game_events</type>
+                    <type>player_stats</type>
+                    <type>team_standings</type>
+                    <type>shift_data</type>
+                </data_types>
+            </Source>
+            <Source id="tracking_data" type="internal">
+                <format>json</format>
+                <frequency>real_time</frequency>
+            </Source>
+        </DataSources>
+        
+        <Transformations>
+            <Transform id="normalize_events">
+                <input>raw_game_events</input>
+                <output>normalized_events</output>
+                <rules>
+                    <rule>standardize_coordinates</rule>
+                    <rule>calculate_distances</rule>
+                    <rule>add_game_context</rule>
+                </rules>
+            </Transform>
+        </Transformations>
+    </DataPipeline>
+
+    <!-- AI Models Configuration -->
+    <AIModels>
+        <Model id="expected_goals" priority="critical">
+            <type>regression</type>
+            <algorithm>XGBoost</algorithm>
+            <features>
+                <feature name="shot_distance" type="float"/>
+                <feature name="shot_angle" type="float"/>
+                <feature name="shot_type" type="categorical"/>
+                <feature name="last_event_type" type="categorical"/>
+                <feature name="time_since_last_event" type="float"/>
+                <feature name="is_rebound" type="boolean"/>
+                <feature name="is_rush" type="boolean"/>
+                <feature name="shooter_handedness" type="categorical"/>
+                <feature name="goalie_positioning" type="float"/>
+            </features>
+            <target>goal_probability</target>
+            <training_params>
+                <param name="n_estimators">1000</param>
+                <param name="max_depth">7</param>
+                <param name="learning_rate">0.01</param>
+            </training_params>
+        </Model>
+
+        <Model id="player_impact" priority="critical">
+            <type>neural_network</type>
+            <algorithm>LSTM</algorithm>
+            <purpose>Predict player performance impact over time</purpose>
+            <features>
+                <feature name="rolling_corsi" type="float" window="10"/>
+                <feature name="zone_entries" type="float" window="5"/>
+                <feature name="quality_of_competition" type="float"/>
+                <feature name="quality_of_teammates" type="float"/>
+                <feature name="fatigue_index" type="float"/>
+                <feature name="days_rest" type="int"/>
+            </features>
+            <target>next_game_impact_score</target>
+        </Model>
+
+        <Model id="line_chemistry" priority="high">
+            <type>clustering_regression</type>
+            <algorithm>RandomForest_with_KMeans</algorithm>
+            <features>
+                <feature name="combined_corsi" type="float"/>
+                <feature name="goal_differential" type="float"/>
+                <feature name="pass_completion_rate" type="float"/>
+                <feature name="zone_time_together" type="float"/>
+                <feature name="scoring_chance_generation" type="float"/>
+            </features>
+            <target>chemistry_score</target>
+        </Model>
+
+        <Model id="injury_risk" priority="high">
+            <type>classification</type>
+            <algorithm>GradientBoosting</algorithm>
+            <features>
+                <feature name="games_played_consecutive" type="int"/>
+                <feature name="hits_taken_rolling" type="float" window="7"/>
+                <feature name="minutes_played_variance" type="float"/>
+                <feature name="age" type="float"/>
+                <feature name="injury_history_score" type="float"/>
+                <feature name="workload_index" type="float"/>
+            </features>
+            <target>injury_probability_7_days</target>
+        </Model>
+
+        <Model id="game_momentum" priority="medium">
+            <type>time_series</type>
+            <algorithm>Prophet_with_RNN</algorithm>
+            <features>
+                <feature name="shot_attempts_differential" type="float" temporal="true"/>
+                <feature name="scoring_chances_differential" type="float" temporal="true"/>
+                <feature name="faceoff_win_rate" type="float" temporal="true"/>
+                <feature name="penalty_differential" type="int" temporal="true"/>
+                <feature name="crowd_noise_level" type="float" temporal="true"/>
+            </features>
+            <target>momentum_score</target>
+            <output>next_5_minutes_prediction</output>
+        </Model>
+    </AIModels>
+
+    <!-- Analytics Workflows -->
+    <Workflows>
+        <Workflow id="pre_game_analysis">
+            <steps>
+                <step order="1" model="player_impact">
+                    <input>roster_players</input>
+                    <output>projected_performance</output>
+                </step>
+                <step order="2" model="line_chemistry">
+                    <input>possible_combinations</input>
+                    <output>optimal_lines</output>
+                </step>
+                <step order="3" process="opponent_tendency_analysis">
+                    <input>last_10_games</input>
+                    <output>weakness_report</output>
+                </step>
+            </steps>
+        </Workflow>
+
+        <Workflow id="real_time_analysis">
+            <steps>
+                <step order="1" model="game_momentum" frequency="30s">
+                    <input>live_game_events</input>
+                    <output>momentum_shift_alert</output>
+                </step>
+                <step order="2" model="expected_goals" trigger="shot_event">
+                    <input>shot_details</input>
+                    <output>xG_value</output>
+                </step>
+            </steps>
+        </Workflow>
+    </Workflows>
+
+    <!-- Visualization Components -->
+    <Visualizations>
+        <Component id="rink_heatmap" type="d3js">
+            <data_source>shot_locations</data_source>
+            <update_frequency>real_time</update_frequency>
+        </Component>
+        <Component id="player_spider" type="plotly">
+            <data_source>player_metrics</data_source>
+            <metrics>
+                <metric>offense</metric>
+                <metric>defense</metric>
+                <metric>transition</metric>
+                <metric>physicality</metric>
+                <metric>discipline</metric>
+            </metrics>
+        </Component>
+    </Visualizations>
+</PenguinsAnalyticsSystem>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PenguinsAIProjectTransfer version="2.0" timestamp="2025-05-27T14:30:00">
+    
+    <!-- PROJECT IDENTITY -->
+    <Project>
+        <name>Pittsburgh Penguins AI Analytics Platform</name>
+        <purpose>NHL hockey analytics with Expected Goals (xG) prediction</purpose>
+        <github>https://github.com/renewedCRMsolutions/penguins-ai</github>
+        <stage>Ready for Production Training</stage>
+    </Project>
+    
+    <!-- SYSTEM CONFIGURATION -->
+    <SystemSpecs>
+        <hardware>
+            <model>ThinkPad P16 Gen 2</model>
+            <cpu>Intel i9-13950HX (24 cores, 32 threads)</cpu>
+            <ram>64GB DDR5</ram>
+            <gpu>NVIDIA RTX 2000 Ada Generation (8GB)</gpu>
+        </hardware>
+        <benchmark_results>
+            <optimal_threads>20</optimal_threads>
+            <max_memory_gb>47</max_memory_gb>
+            <gpu_speedup>4.2x</gpu_speedup>
+            <xgboost_100k_time>0.61s</xgboost_100k_time>
+        </benchmark_results>
+        <config_location>config/optimal_settings.py</config_location>
+    </SystemSpecs>
+    
+    <!-- CURRENT STATE -->
+    <ProjectState>
+        <Backend status="complete">
+            <location>penguins_ai/</location>
+            <api>FastAPI on http://localhost:8000</api>
+            <endpoints>
+                <endpoint>/predict/expected-goals</endpoint>
+                <endpoint>/predict/batch</endpoint>
+                <endpoint>/model/info</endpoint>
+            </endpoints>
+            <note>Currently using synthetic data model - needs update</note>
+        </Backend>
+        
+        <Frontend status="complete">
+            <location>penguins-frontend/</location>
+            <framework>Vue 3 + TypeScript + Vite</framework>
+            <url>http://localhost:5173</url>
+            <features>
+                <feature>Interactive NHL rink (200x85ft accurate)</feature>
+                <feature>Real-time xG predictions</feature>
+                <feature>Shot heat maps</feature>
+                <feature>Two modes: Interactive and NHL Data</feature>
+            </features>
+        </Frontend>
+        
+        <Models status="ready_to_train">
+            <old_models status="deleted">
+                <note>All synthetic data and models removed</note>
+                <deleted>data/shots_*.csv</deleted>
+                <deleted>models/*.pkl</deleted>
+            </old_models>
+            <new_structure>
+                <data_dir>data/nhl/ (empty, ready for real data)</data_dir>
+                <models_dir>models/production/ (empty, ready for new models)</models_dir>
+                <training_script>train/train_nhl_optimized.py</training_script>
+            </new_structure>
+        </Models>
+    </ProjectState>
+    
+    <!-- FILE STRUCTURE -->
+    <CleanFileStructure>
+        penguins_ai/
+        ├── api/
+        │   └── main.py                    # FastAPI server
+        ├── config/
+        │   └── optimal_settings.py        # P16 optimized settings
+        ├── data/
+        │   └── nhl/                      # Empty, for NHL data
+        ├── models/
+        │   └── production/               # Empty, for trained models
+        ├── scripts/
+        │   └── benchmark_system.py       # System optimizer
+        ├── train/
+        │   └── train_nhl_optimized.py    # ONLY training file
+        └── requirements.txt
+        
+        penguins-frontend/
+        ├── src/
+        │   ├── components/
+        │   │   ├── RinkVisualization.vue
+        │   │   └── NHLRink.vue
+        │   ├── services/
+        │   │   └── penguinsAPI.ts
+        │   └── types/
+        │       └── rinkDimensions.ts
+        └── package.json
+    </CleanFileStructure>
+    
+    <!-- IMMEDIATE NEXT STEPS -->
+    <NextActions>
+        <Action priority="1" status="ready">
+            <command>cd penguins_ai && python train/train_nhl_optimized.py</command>
+            <purpose>Train production model with real NHL data</purpose>
+            <expected_output>
+                - Fetches 30 days of NHL games
+                - Trains XGBoost with 20 threads
+                - Saves to models/production/xg_model_nhl.pkl
+                - Shows AUC > 0.75
+            </expected_output>
+        </Action>
+        
+        <Action priority="2" status="pending">
+            <task>Update API to use new model</task>
+            <file>api/main.py</file>
+            <change>Load models/production/xg_model_nhl.pkl</change>
+        </Action>
+        
+        <Action priority="3" status="pending">
+            <task>Test end-to-end</task>
+            <steps>
+                - Start API: uvicorn api.main:app --reload
+                - Start Frontend: npm run dev
+                - Click on rink, verify predictions
+            </steps>
+        </Action>
+    </NextActions>
+    
+    <!-- DEPENDENCIES -->
+    <InstalledPackages>
+        <backend>
+            xgboost, pandas, numpy, scikit-learn, 
+            fastapi, uvicorn, aiohttp, joblib,
+            torch, tensorflow (for GPU models)
+        </backend>
+        <frontend>
+            vue, vue-router, axios, d3, pinia, 
+            typescript, vite
+        </frontend>
+    </InstalledPackages>
+    
+    <!-- NHL API REFERENCE -->
+    <NHLDataSource>
+        <base_url>https://api-web.nhle.com/v1/</base_url>
+        <key_endpoints>
+            <endpoint>/score/{date} - Get games by date</endpoint>
+            <endpoint>/gamecenter/{gameId}/play-by-play - Shot data</endpoint>
+            <endpoint>/player/{playerId}/game-log - Player stats</endpoint>
+        </key_endpoints>
+        <no_auth_required>true</no_auth_required>
+    </NHLDataSource>
+    
+    <!-- CONVERSATION CONTEXT -->
+    <Context>
+        Building NHL analytics for Pittsburgh Penguins job application.
+        Started with synthetic data MVP, now upgrading to real NHL data.
+        System benchmarked and optimized for ThinkPad P16 Gen 2.
+        Ready to train production models with optimal settings.
+        
+        Key decisions made:
+        - Using 20 threads for XGBoost (optimal for i9-13950HX)
+        - Single training file: train_nhl_optimized.py
+        - Deleted all synthetic data and old models
+        - GPU ready for deep learning models later
+        
+        Current task: Run training with real NHL data.
+    </Context>
+    
+    <!-- QUICK COMMANDS -->
+    <QuickReference>
+        # Backend (Terminal 1)
+        cd penguins_ai
+        .\penguins_env\Scripts\activate
+        python train\train_nhl_optimized.py
+        python -m uvicorn api.main:app --reload
+        
+        # Frontend (Terminal 2)
+        cd penguins-frontend
+        npm run dev
+        
+        # Check results
+        http://localhost:8000/docs
+        http://localhost:5173/rink
+    </QuickReference>
+</PenguinsAIProjectTransfer>

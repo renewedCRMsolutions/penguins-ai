@@ -1,0 +1,335 @@
+<NHLAPITraining version="1.0" source="https://github.com/Zmalski/NHL-API-Reference">
+    
+    <!-- API OVERVIEW -->
+    <APIOverview>
+        <base_url>https://api-web.nhle.com/v1/</base_url>
+        <description>Official NHL API providing comprehensive hockey data</description>
+        <rate_limits>Unknown - implement conservative throttling</rate_limits>
+        <authentication>None required</authentication>
+    </APIOverview>
+
+    <!-- ENDPOINTS FOR XG MODEL ENHANCEMENT -->
+    <CriticalEndpoints priority="high">
+        
+        <Endpoint path="/gamecenter/{gameId}/play-by-play">
+            <purpose>Real-time shot data for model training</purpose>
+            <usage>Primary source for shot locations and outcomes</usage>
+            <data_points>
+                <field>plays[].typeDescKey - shot types</field>
+                <field>plays[].details.xCoord - shot X coordinate</field>
+                <field>plays[].details.yCoord - shot Y coordinate</field>
+                <field>plays[].details.zoneCode - O/D/N zone</field>
+                <field>plays[].details.shotType - wrist/slap/snap etc</field>
+                <field>plays[].details.scoringChance - boolean</field>
+                <field>plays[].details.scoringChanceSecondaryType</field>
+            </data_points>
+            <integration_code>
+                async def fetch_game_shots(game_id: str):
+                    url = f"{BASE_URL}/gamecenter/{game_id}/play-by-play"
+                    response = await fetch(url)
+                    shots = [p for p in response['plays'] if p['typeDescKey'] == 'shot-on-goal']
+                    return process_shots(shots)
+            </integration_code>
+        </Endpoint>
+
+        <Endpoint path="/gamecenter/{gameId}/boxscore">
+            <purpose>Player statistics for impact model</purpose>
+            <usage>Track player performance metrics per game</usage>
+            <data_points>
+                <field>playerByGameStats - detailed player stats</field>
+                <field>teamGameStats - team level metrics</field>
+                <field>shotsByPeriod - shot distribution</field>
+            </data_points>
+        </Endpoint>
+
+        <Endpoint path="/player/{playerId}/game-log/{season}/{gameType}">
+            <purpose>Historical player data for LSTM training</purpose>
+            <usage>Build sequences for player impact prediction</usage>
+            <data_points>
+                <field>gameLog[] - array of game performances</field>
+                <field>goals, assists, shots, toi - key metrics</field>
+                <field>plusMinus - player impact indicator</field>
+            </data_points>
+        </Endpoint>
+
+        <Endpoint path="/shift-charts/{gameId}">
+            <purpose>Line combination data for chemistry model</purpose>
+            <usage>Track which players play together</usage>
+            <data_points>
+                <field>shifts by player</field>
+                <field>start/end times</field>
+                <field>players on ice together</field>
+            </data_points>
+        </Endpoint>
+    </CriticalEndpoints>
+
+    <!-- LIVE DATA ENDPOINTS -->
+    <LiveDataEndpoints priority="high">
+        <Endpoint path="/score/{date}">
+            <purpose>Today's games for live tracking</purpose>
+            <refresh_rate>60 seconds</refresh_rate>
+        </Endpoint>
+
+        <Endpoint path="/gamecenter/{gameId}/play-by-play">
+            <purpose>Live play-by-play updates</purpose>
+            <refresh_rate>30 seconds during games</refresh_rate>
+            <websocket_alternative>Consider SSE implementation</websocket_alternative>
+        </Endpoint>
+    </LiveDataEndpoints>
+
+    <!-- DATA PIPELINE IMPLEMENTATION -->
+    <DataPipeline>
+        <Component name="GameDataCollector">
+            <responsibility>Fetch and store completed games</responsibility>
+            <schedule>Daily at 3 AM ET</schedule>
+            <code>
+                class GameDataCollector:
+                    def __init__(self):
+                        self.base_url = "https://api-web.nhle.com/v1"
+                        
+                    async def collect_yesterday_games(self):
+                        date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+                        games = await self.fetch_games_by_date(date)
+                        
+                        for game in games:
+                            if game['gameState'] == 'OFF':  # Game finished
+                                await self.process_game(game['id'])
+                    
+                    async def process_game(self, game_id: str):
+                        # Fetch play-by-play
+                        pbp_data = await self.fetch_play_by_play(game_id)
+                        shots = self.extract_shots(pbp_data)
+                        
+                        # Store in BigQuery
+                        await self.store_shots(shots)
+            </code>
+        </Component>
+
+        <Component name="PlayerDataAggregator">
+            <responsibility>Build player history for ML models</responsibility>
+            <endpoints_used>
+                <endpoint>/player/{playerId}/game-log/{season}/2</endpoint>
+                <endpoint>/player/{playerId}/landing</endpoint>
+            </endpoints_used>
+        </Component>
+
+        <Component name="LiveGameTracker">
+            <responsibility>Real-time predictions during games</responsibility>
+            <endpoints_used>
+                <endpoint>/gamecenter/{gameId}/play-by-play</endpoint>
+                <endpoint>/gamecenter/{gameId}/boxscore</endpoint>
+            </endpoints_used>
+        </Component>
+    </DataPipeline>
+
+    <!-- ENHANCED XG FEATURES FROM API -->
+    <EnhancedFeatures>
+        <Feature name="pre_shot_movement">
+            <source>play-by-play event sequence</source>
+            <calculation>Time since last event, previous event type</calculation>
+        </Feature>
+        
+        <Feature name="game_situation">
+            <source>situationCode from play-by-play</source>
+            <values>1551 (5v5), 1451 (5v4), etc.</values>
+        </Feature>
+        
+        <Feature name="shooter_momentum">
+            <source>Player's last N shots in game</source>
+            <calculation>Rolling shot success rate</calculation>
+        </Feature>
+        
+        <Feature name="goalie_fatigue">
+            <source>Shots faced in period</source>
+            <calculation>Cumulative saves in last 10 minutes</calculation>
+        </Feature>
+    </EnhancedFeatures>
+
+    <!-- BIGQUERY SCHEMA -->
+    <BigQuerySchema>
+        <Table name="nhl_shots">
+            <schema>
+                CREATE TABLE `penguins-ai.nhl_data.shots` (
+                    shot_id STRING NOT NULL,
+                    game_id STRING NOT NULL,
+                    game_date DATE,
+                    period INT64,
+                    period_time STRING,
+                    team_code STRING,
+                    player_id INT64,
+                    player_name STRING,
+                    shot_type STRING,
+                    x_coord FLOAT64,
+                    y_coord FLOAT64,
+                    distance FLOAT64,
+                    angle FLOAT64,
+                    is_goal BOOL,
+                    is_scoring_chance BOOL,
+                    situation_code STRING,
+                    goalie_id INT64,
+                    xg_prediction FLOAT64,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+                )
+                PARTITION BY DATE(game_date)
+                CLUSTER BY team_code, player_id;
+            </schema>
+        </Table>
+
+        <Table name="player_sequences">
+            <schema>
+                CREATE TABLE `penguins-ai.nhl_data.player_sequences` (
+                    player_id INT64,
+                    sequence_date DATE,
+                    games_array ARRAY<STRUCT
+                        game_id STRING,
+                        goals INT64,
+                        assists INT64,
+                        shots INT64,
+                        toi FLOAT64,
+                        plus_minus INT64
+                    >>,
+                    next_game_impact FLOAT64
+                );
+            </schema>
+        </Table>
+    </BigQuerySchema>
+
+    <!-- API INTEGRATION SERVICE -->
+    <ServiceImplementation>
+        <File name="services/nhl_api_service.py">
+            <code>
+import aiohttp
+import asyncio
+from typing import List, Dict, Any
+from datetime import datetime, timedelta
+import pandas as pd
+from google.cloud import bigquery
+
+class NHLAPIService:
+    BASE_URL = "https://api-web.nhle.com/v1"
+    
+    def __init__(self):
+        self.session = None
+        self.bq_client = bigquery.Client()
+        
+    async def __aenter__(self):
+        self.session = aiohttp.ClientSession()
+        return self
+        
+    async def __aexit__(self, *args):
+        await self.session.close()
+    
+    async def fetch_endpoint(self, endpoint: str) -> Dict[str, Any]:
+        """Fetch data from NHL API endpoint with rate limiting"""
+        url = f"{self.BASE_URL}{endpoint}"
+        
+        async with self.session.get(url) as response:
+            if response.status == 200:
+                return await response.json()
+            else:
+                raise Exception(f"API Error: {response.status}")
+    
+    async def get_games_by_date(self, date: str) -> List[Dict]:
+        """Get all games for a specific date"""
+        data = await self.fetch_endpoint(f"/score/{date}")
+        return data.get('games', [])
+    
+    async def get_play_by_play(self, game_id: str) -> Dict:
+        """Get complete play-by-play for a game"""
+        return await self.fetch_endpoint(f"/gamecenter/{game_id}/play-by-play")
+    
+    async def extract_shots_from_game(self, game_id: str) -> pd.DataFrame:
+        """Extract all shots from a game's play-by-play"""
+        pbp = await self.get_play_by_play(game_id)
+        
+        shots = []
+        for play in pbp.get('plays', []):
+            if play['typeDescKey'] in ['shot-on-goal', 'goal']:
+                shot_data = {
+                    'shot_id': f"{game_id}_{play['eventId']}",
+                    'game_id': game_id,
+                    'period': play['period'],
+                    'time': play['timeInPeriod'],
+                    'player_id': play['details'].get('shootingPlayerId'),
+                    'shot_type': play['details'].get('shotType'),
+                    'x_coord': play['details'].get('xCoord'),
+                    'y_coord': play['details'].get('yCoord'),
+                    'is_goal': play['typeDescKey'] == 'goal',
+                    'situation': play.get('situationCode')
+                }
+                shots.append(shot_data)
+        
+        return pd.DataFrame(shots)
+    
+    async def update_shots_table(self, date: str):
+        """Update BigQuery with shots from all games on date"""
+        games = await self.get_games_by_date(date)
+        
+        all_shots = []
+        for game in games:
+            if game['gameState'] == 'OFF':  # Completed games only
+                try:
+                    shots_df = await self.extract_shots_from_game(game['id'])
+                    all_shots.append(shots_df)
+                except Exception as e:
+                    print(f"Error processing game {game['id']}: {e}")
+        
+        if all_shots:
+            combined_df = pd.concat(all_shots, ignore_index=True)
+            
+            # Load to BigQuery
+            table_id = "penguins-ai.nhl_data.shots"
+            job = self.bq_client.load_table_from_dataframe(
+                combined_df, table_id, job_config=bigquery.LoadJobConfig(
+                    write_disposition="WRITE_APPEND"
+                )
+            )
+            job.result()
+            print(f"Loaded {len(combined_df)} shots to BigQuery")
+
+# Usage
+async def main():
+    async with NHLAPIService() as nhl:
+        # Update yesterday's games
+        yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+        await nhl.update_shots_table(yesterday)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+            </code>
+        </File>
+    </ServiceImplementation>
+
+    <!-- TRAINING TASKS FOR AI -->
+    <AITasks>
+        <Task priority="immediate">
+            <name>Implement NHL API Integration</name>
+            <steps>
+                <step>Set up async HTTP client with rate limiting</step>
+                <step>Create data models for all endpoint responses</step>
+                <step>Build extraction functions for each endpoint</step>
+                <step>Test with Penguins games from 2023-24 season</step>
+            </steps>
+        </Task>
+        
+        <Task priority="high">
+            <name>Enhance XG Model with Real Data</name>
+            <steps>
+                <step>Extract 50,000+ real NHL shots</step>
+                <step>Engineer features from play-by-play context</step>
+                <step>Retrain model with new features</step>
+                <step>Validate against known xG models</step>
+            </steps>
+        </Task>
+        
+        <Task priority="medium">
+            <name>Build Real-time Pipeline</name>
+            <steps>
+                <step>Create game monitoring service</step>
+                <step>Implement WebSocket/SSE for live updates</step>
+                <step>Add caching layer for API responses</step>
+                <step>Deploy to Cloud Run with auto-scaling</step>
+            </steps>
+        </Task>
+    </AITasks>
+</NHLAPITraining>
