@@ -105,3 +105,15 @@ tmp/
 # API keys
 api_keys.py
 credentials.json
+
+# Project planning documents (keep private)
+penguins_ai_blueprint.xml
+project_roadmap.xml
+development_plans/
+*.blueprint.xml
+*roadmap*.xml
+
+# Keep any strategic documents private
+docs/private/
+planning/
+strategy/
