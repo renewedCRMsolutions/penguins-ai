@@ -1,16 +1,16 @@
-# File: requirements.txt
-# Create this file in your penguins_ai directory
+# File: penguins_ai/requirements.txt
+# Core ML libraries
+scikit-learn>=1.3.0
+xgboost>=2.0.0
+lightgbm>=4.1.0
+catboost>=1.2
+pandas>=2.1.0
+numpy>=1.24.0
+fastapi>=0.104.0
+uvicorn>=0.24.0
+aiohttp>=3.9.0
+joblib>=1.3.0
+requests>=2.31.0
 
-# Core ML libraries (use newer versions that have wheels for Windows)
-scikit-learn
-xgboost
-pandas
-numpy
-fastapi
-uvicorn
-plotly
-requests
-joblib
-
-# Database
-psycopg2-binary
+# For GPU testing
+torch>=2.1.0  # Optional, for GPU detection
