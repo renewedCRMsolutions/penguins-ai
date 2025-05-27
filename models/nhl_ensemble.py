@@ -4,8 +4,9 @@ import lightgbm as lgb
 from catboost import CatBoostClassifier
 import numpy as np
 import sys
-sys.path.append('..')
-from config.optimal_settings import SYSTEM_OPTIMAL_CONFIG
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Import config files (create these first)
 from config.catboost_config import CATBOOST_CONFIG

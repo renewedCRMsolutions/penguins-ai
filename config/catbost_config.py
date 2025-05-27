@@ -1,4 +1,4 @@
-# File: penguins_ai/config/catboost_config.py
+# CatBoost configuration for GPU training
 CATBOOST_CONFIG = {
     'iterations': 3000,
     'depth': 12,
