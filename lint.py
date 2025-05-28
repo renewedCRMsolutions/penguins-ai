@@ -1,7 +1,7 @@
 # File: penguins_ai/lint.py
 import subprocess
 import sys
-import os
+# import os  # Unused import
 
 def run_lint():
     """Run linting on key files only"""

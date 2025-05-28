@@ -1,0 +1,486 @@
+{
+  "schedule/now": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/schedule/now",
+    "sample_data": {
+      "previousStartDate": "2025-05-20",
+      "gameWeek": "<list>",
+      "oddsPartners": "<list>",
+      "preSeasonStartDate": "2024-09-21",
+      "regularSeasonStartDate": "2024-10-04"
+    },
+    "keys": [
+      "previousStartDate",
+      "gameWeek",
+      "oddsPartners",
+      "preSeasonStartDate",
+      "regularSeasonStartDate",
+      "regularSeasonEndDate",
+      "playoffEndDate",
+      "numberOfGames"
+    ],
+    "has_shot_data": false
+  },
+  "schedule/date": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/schedule/2024-10-15",
+    "sample_data": {
+      "nextStartDate": "2024-10-22",
+      "previousStartDate": "2024-10-08",
+      "gameWeek": "<list>",
+      "preSeasonStartDate": "2024-09-21",
+      "regularSeasonStartDate": "2024-10-04"
+    },
+    "keys": [
+      "nextStartDate",
+      "previousStartDate",
+      "gameWeek",
+      "preSeasonStartDate",
+      "regularSeasonStartDate",
+      "regularSeasonEndDate",
+      "playoffEndDate",
+      "numberOfGames"
+    ],
+    "has_shot_data": false
+  },
+  "club-schedule/month": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/club-schedule/EDM/month/now",
+    "sample_data": {
+      "previousMonth": "2025-04",
+      "currentMonth": "2025-05",
+      "nextMonth": "2025-06",
+      "calendarUrl": "https://nhl.ecal.com/oilers",
+      "clubTimezone": "America/Edmonton"
+    },
+    "keys": [
+      "previousMonth",
+      "currentMonth",
+      "nextMonth",
+      "calendarUrl",
+      "clubTimezone",
+      "clubUTCOffset",
+      "games"
+    ],
+    "has_shot_data": false
+  },
+  "club-schedule/week": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/club-schedule/EDM/week/now",
+    "sample_data": {
+      "previousStartDate": "2025-05-20",
+      "calendarUrl": "https://nhl.ecal.com/oilers",
+      "clubTimezone": "America/Edmonton",
+      "clubUTCOffset": "-06:00",
+      "games": "<list>"
+    },
+    "keys": [
+      "previousStartDate",
+      "calendarUrl",
+      "clubTimezone",
+      "clubUTCOffset",
+      "games"
+    ],
+    "has_shot_data": false
+  },
+  "club-schedule-season": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/club-schedule-season/EDM/20242025",
+    "sample_data": {
+      "previousSeason": 20232024,
+      "currentSeason": 20242025,
+      "clubTimezone": "America/Edmonton",
+      "clubUTCOffset": "-06:00",
+      "games": "<list>"
+    },
+    "keys": [
+      "previousSeason",
+      "currentSeason",
+      "clubTimezone",
+      "clubUTCOffset",
+      "games"
+    ],
+    "has_shot_data": false
+  },
+  "score/now": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/score/now",
+    "sample_data": {
+      "prevDate": "2025-05-26",
+      "currentDate": "2025-05-27",
+      "nextDate": "2025-05-28",
+      "gameWeek": "<list>",
+      "oddsPartners": "<list>"
+    },
+    "keys": [
+      "prevDate",
+      "currentDate",
+      "nextDate",
+      "gameWeek",
+      "oddsPartners",
+      "games"
+    ],
+    "has_shot_data": true
+  },
+  "score/date": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/score/2024-10-15",
+    "sample_data": {
+      "prevDate": "2024-10-14",
+      "currentDate": "2024-10-15",
+      "nextDate": "2024-10-16",
+      "gameWeek": "<list>",
+      "oddsPartners": "<list>"
+    },
+    "keys": [
+      "prevDate",
+      "currentDate",
+      "nextDate",
+      "gameWeek",
+      "oddsPartners",
+      "games"
+    ],
+    "has_shot_data": true
+  },
+  "gamecenter/landing": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/gamecenter/2024020100/landing",
+    "sample_data": {
+      "id": 2024020100,
+      "season": 20242025,
+      "gameType": 2,
+      "limitedScoring": false,
+      "gameDate": "2024-10-22"
+    },
+    "keys": [
+      "id",
+      "season",
+      "gameType",
+      "limitedScoring",
+      "gameDate",
+      "venue",
+      "venueLocation",
+      "startTimeUTC",
+      "easternUTCOffset",
+      "venueUTCOffset",
+      "venueTimezone",
+      "periodDescriptor",
+      "tvBroadcasts",
+      "gameState",
+      "gameScheduleState",
+      "awayTeam",
+      "homeTeam",
+      "shootoutInUse",
+      "maxPeriods",
+      "regPeriods",
+      "otInUse",
+      "tiesInUse",
+      "summary",
+      "clock"
+    ],
+    "has_shot_data": true
+  },
+  "gamecenter/boxscore": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/gamecenter/2024020100/boxscore",
+    "sample_data": {
+      "id": 2024020100,
+      "season": 20242025,
+      "gameType": 2,
+      "limitedScoring": false,
+      "gameDate": "2024-10-22"
+    },
+    "keys": [
+      "id",
+      "season",
+      "gameType",
+      "limitedScoring",
+      "gameDate",
+      "venue",
+      "venueLocation",
+      "startTimeUTC",
+      "easternUTCOffset",
+      "venueUTCOffset",
+      "tvBroadcasts",
+      "gameState",
+      "gameScheduleState",
+      "periodDescriptor",
+      "regPeriods",
+      "awayTeam",
+      "homeTeam",
+      "clock",
+      "playerByGameStats",
+      "summary",
+      "gameOutcome"
+    ],
+    "has_shot_data": true
+  },
+  "gamecenter/play-by-play": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/gamecenter/2024020100/play-by-play",
+    "sample_data": {
+      "id": 2024020100,
+      "season": 20242025,
+      "gameType": 2,
+      "limitedScoring": false,
+      "gameDate": "2024-10-22"
+    },
+    "keys": [
+      "id",
+      "season",
+      "gameType",
+      "limitedScoring",
+      "gameDate",
+      "venue",
+      "venueLocation",
+      "startTimeUTC",
+      "easternUTCOffset",
+      "venueUTCOffset",
+      "tvBroadcasts",
+      "gameState",
+      "gameScheduleState",
+      "periodDescriptor",
+      "awayTeam",
+      "homeTeam",
+      "shootoutInUse",
+      "otInUse",
+      "clock",
+      "displayPeriod",
+      "maxPeriods",
+      "gameOutcome",
+      "plays",
+      "rosterSpots",
+      "regPeriods",
+      "summary"
+    ],
+    "has_shot_data": true
+  },
+  "gamecenter/right-rail": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/gamecenter/2024020100/right-rail",
+    "sample_data": {
+      "seasonSeries": "<list>",
+      "seasonSeriesWins": "<dict>",
+      "gameInfo": "<dict>",
+      "gameVideo": "<dict>",
+      "linescore": "<dict>"
+    },
+    "keys": [
+      "seasonSeries",
+      "seasonSeriesWins",
+      "gameInfo",
+      "gameVideo",
+      "linescore",
+      "shotsByPeriod",
+      "teamGameStats",
+      "gameReports"
+    ],
+    "has_shot_data": true
+  },
+  "wsc/play-by-play": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/wsc/play-by-play/2024020100",
+    "sample_data": {
+      "id": 16385001,
+      "eventId": 9,
+      "period": 1,
+      "timeInPeriod": "00:00",
+      "secondsRemaining": 1200
+    },
+    "keys": "list",
+    "has_shot_data": false
+  },
+  "wsc/game-story": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/wsc/game-story/2024020100",
+    "sample_data": {
+      "id": 2024020100,
+      "season": 20242025,
+      "gameType": 2,
+      "limitedScoring": false,
+      "gameDate": "2024-10-22"
+    },
+    "keys": [
+      "id",
+      "season",
+      "gameType",
+      "limitedScoring",
+      "gameDate",
+      "venue",
+      "venueLocation",
+      "startTimeUTC",
+      "easternUTCOffset",
+      "venueUTCOffset",
+      "venueTimezone",
+      "tvBroadcasts",
+      "gameState",
+      "gameScheduleState",
+      "awayTeam",
+      "homeTeam",
+      "shootoutInUse",
+      "maxPeriods",
+      "regPeriods",
+      "otInUse",
+      "tiesInUse",
+      "summary",
+      "periodDescriptor",
+      "clock"
+    ],
+    "has_shot_data": true
+  },
+  "player/landing": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/player/8478402/landing",
+    "sample_data": {
+      "playerId": 8478402,
+      "isActive": true,
+      "currentTeamId": 22,
+      "currentTeamAbbrev": "EDM",
+      "fullTeamName": "<dict>"
+    },
+    "keys": [
+      "playerId",
+      "isActive",
+      "currentTeamId",
+      "currentTeamAbbrev",
+      "fullTeamName",
+      "teamCommonName",
+      "teamPlaceNameWithPreposition",
+      "firstName",
+      "lastName",
+      "badges",
+      "teamLogo",
+      "sweaterNumber",
+      "position",
+      "headshot",
+      "heroImage",
+      "heightInInches",
+      "heightInCentimeters",
+      "weightInPounds",
+      "weightInKilograms",
+      "birthDate",
+      "birthCity",
+      "birthStateProvince",
+      "birthCountry",
+      "shootsCatches",
+      "draftDetails",
+      "playerSlug",
+      "inTop100AllTime",
+      "inHHOF",
+      "featuredStats",
+      "careerTotals",
+      "shopLink",
+      "twitterLink",
+      "watchLink",
+      "last5Games",
+      "seasonTotals",
+      "awards",
+      "currentTeamRoster"
+    ],
+    "has_shot_data": true
+  },
+  "player/game-log": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/player/8478402/game-log/20242025/2",
+    "sample_data": {
+      "seasonId": 20242025,
+      "gameTypeId": 2,
+      "playerStatsSeasons": "<list>",
+      "gameLog": "<list>"
+    },
+    "keys": [
+      "seasonId",
+      "gameTypeId",
+      "playerStatsSeasons",
+      "gameLog"
+    ],
+    "has_shot_data": true
+  },
+  "skater-stats-leaders": {
+    "status": "failed",
+    "code": 400,
+    "url": "https://api-web.nhle.com/v1/skater-stats-leaders/current?categories=goals,shots,points&limit=10"
+  },
+  "goalie-stats-leaders": {
+    "status": "failed",
+    "code": 400,
+    "url": "https://api-web.nhle.com/v1/goalie-stats-leaders/current?categories=wins,saves,savePercentage&limit=10"
+  },
+  "club-stats": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/club-stats/EDM/20242025/2",
+    "sample_data": {
+      "season": "20242025",
+      "gameType": 2,
+      "skaters": "<list>",
+      "goalies": "<list>"
+    },
+    "keys": [
+      "season",
+      "gameType",
+      "skaters",
+      "goalies"
+    ],
+    "has_shot_data": true
+  },
+  "club-stats-season": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/club-stats-season/EDM",
+    "sample_data": {
+      "season": 20242025,
+      "gameTypes": "<list>"
+    },
+    "keys": "list",
+    "has_shot_data": false
+  },
+  "standings/now": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/standings/now",
+    "sample_data": {
+      "wildCardIndicator": true,
+      "standingsDateTimeUtc": "2025-05-28T03:22:02Z",
+      "standings": "<list>"
+    },
+    "keys": [
+      "wildCardIndicator",
+      "standingsDateTimeUtc",
+      "standings"
+    ],
+    "has_shot_data": false
+  },
+  "roster/current": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/roster/EDM/current",
+    "sample_data": {
+      "forwards": "<list>",
+      "defensemen": "<list>",
+      "goalies": "<list>"
+    },
+    "keys": [
+      "forwards",
+      "defensemen",
+      "goalies"
+    ],
+    "has_shot_data": true
+  },
+  "draft/picks": {
+    "status": "success",
+    "url": "https://api-web.nhle.com/v1/draft/picks/2024/1",
+    "sample_data": {
+      "broadcastStartTimeUTC": "2024-06-28T23:00:00Z",
+      "draftYear": 2024,
+      "draftYears": "<list>",
+      "selectableRounds": "<list>",
+      "state": "over"
+    },
+    "keys": [
+      "broadcastStartTimeUTC",
+      "draftYear",
+      "draftYears",
+      "selectableRounds",
+      "state",
+      "picks"
+    ],
+    "has_shot_data": false
+  }
+}

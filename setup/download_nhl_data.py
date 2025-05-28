@@ -2,10 +2,10 @@
 # Copy this entire content into the file
 
 import os
-import requests
+# import requests  # Unused import
 import pandas as pd
 import numpy as np
-from datetime import datetime
+# from datetime import datetime  # Unused import
 
 def create_directories():
     """Create necessary directories"""

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AITrainingLog version="3.0" project="penguins_ai" updated="2025-05-27T18:00:00">
+    
+    <!-- SYSTEM CONFIGURATION (VERIFIED) -->
+    <SystemConfiguration>
+        <hardware>
+            <model>ThinkPad P16 Gen 2</model>
+            <cpu>Intel i9-13950HX (24 cores, 32 threads)</cpu>
+            <ram>64GB DDR5</ram>
+            <gpu>NVIDIA RTX 2000 Ada Generation (8GB)</gpu>
+        </hardware>
+        <benchmark_completed>2025-05-27T14:12:00</benchmark_completed>
+        <optimal_settings>
+            <xgboost_threads>20</xgboost_threads>
+            <max_memory_gb>47</max_memory_gb>
+            <gpu_speedup>4.2x</gpu_speedup>
+            <gpu_configured>true</gpu_configured>
+            <config_file>config/optimal_settings.py</config_file>
+        </optimal_settings>
+    </SystemConfiguration>
+    
+    <!-- Model Training History -->
+    <TrainingHistory>
+        <Model id="xg_model_v1" timestamp="2025-05-27T14:00:00" status="DELETED">
+            <name>Expected Goals Model (Synthetic Data)</name>
+            <algorithm>XGBoost</algorithm>
+            <performance>
+                <auc_roc>0.73</auc_roc>
+            </performance>
+            <note>Deleted - was trained on fake data</note>
+        </Model>
+        
+        <Model id="xg_model_v2" timestamp="2025-05-27T14:23:00" status="ACTIVE_BUT_WEAK">
+            <name>Expected Goals Model (Real NHL Data)</name>
+            <algorithm>XGBoost with GPU</algorithm>
+            <dataset>
+                <source>NHL Official API</source>
+                <samples>3540</samples>
+                <features>~25</features>
+                <date_range>Unknown (script ran too fast)</date_range>
+            </dataset>
+            <performance>
+                <accuracy>0.933</accuracy>
+                <auc_roc>0.640</auc_roc>
+                <training_time>Instant (suspicious)</training_time>
+            </performance>
+            <problems>
+                <problem>AUC far below target (0.64 vs 0.75)</problem>
+                <problem>High accuracy suggests class imbalance</problem>
+                <problem>Only 3,540 samples (need 50,000+)</problem>
+            </problems>
+            <location>models/production/xg_model_nhl.pkl</location>
+        </Model>
+    </TrainingHistory>
+    
+    <!-- Current Analysis Status -->
+    <ResearchStatus>
+        <RepositoryAnalysis timestamp="2025-05-27T17:45:00">
+            <script>research/analyze_local_repos.py</script>
+            <result>
+                <files_analyzed>83</files_analyzed>
+                <endpoints_found>0</endpoints_found>
+                <issue>Regex patterns didn't match repo structure</issue>
+            </result>
+            <local_repos>
+                <repo>NHL-API-Reference/</repo>
+                <repo>nhl-api-endpoints/</repo>
+                <repo>nhl-odds/ (has SQL files)</repo>
+            </local_repos>
+        </RepositoryAnalysis>
+        
+        <PlannedResearch>
+            <task>Run endpoint discovery on NHL API</task>
+            <task>Scrape MoneyPuck for features</task>
+            <task>Analyze what makes 0.80 AUC models better</task>
+        </PlannedResearch>
+    </ResearchStatus>
+    
+    <!-- Feature Engineering Status -->
+    <FeatureStatus>
+        <CurrentFeatures>
+            <feature>shotDistance</feature>
+            <feature>shotAngle</feature>
+            <feature>shotType (one-hot encoded)</feature>
+            <feature>period</feature>
+            <feature>isRebound</feature>
+            <feature>isRush</feature>
+            <feature>scoreState</feature>
+        </CurrentFeatures>
+        
+        <MissingCriticalFeatures>
+            <feature status="not_available">shotSpeed/Velocity</feature>
+            <feature status="not_implemented">pre_shot_sequence</feature>
+            <feature status="not_implemented">shooter_career_percentage</feature>
+            <feature status="not_implemented">goalie_save_percentage</feature>
+            <feature status="not_implemented">time_since_last_stoppage</feature>
+            <feature status="not_implemented">players_on_ice</feature>
+        </MissingCriticalFeatures>
+    </FeatureStatus>
+    
+    <!-- Performance Benchmarks -->
+    <IndustryComparison>
+        <OurModel>
+            <name>penguins_ai</name>
+            <auc>0.640</auc>
+            <ranking>Below Standard</ranking>
+        </OurModel>
+        <Competitors>
+            <model name="MoneyPuck" auc="0.78-0.80" rank="1"/>
+            <model name="Evolving-Hockey" auc="0.76-0.78" rank="2"/>
+            <model name="Natural Stat Trick" auc="~0.77" rank="3"/>
+            <model name="Academic Best" auc="0.77" rank="4"/>
+            <model name="NHL Teams (estimated)" auc="0.82-0.85" rank="0"/>
+        </Competitors>
+        <Gap>
+            <to_competitive>0.11 (need 0.75)</to_competitive>
+            <to_impressive>0.14 (need 0.78)</to_impressive>
+        </Gap>
+    </IndustryComparison>
+    
+    <!-- Action Items -->
+    <ImmediateActions>
+        <Action priority="1">
+            <task>Debug why training fetched so little data</task>
+            <hypothesis>May have reused old data file instead of fetching new</hypothesis>
+        </Action>
+        
+        <Action priority="2">
+            <task>Increase training data to 50,000+ shots</task>
+            <method>Fetch 365 days instead of 30</method>
+        </Action>
+        
+        <Action priority="3">
+            <task>Implement pre-shot sequence features</task>
+            <method>Track last 3-5 events before each shot</method>
+        </Action>
+        
+        <Action priority="4">
+            <task>Add player quality features</task>
+            <method>Build lookup tables for shooter/goalie quality</method>
+        </Action>
+    </ImmediateActions>
+    
+    <!-- Training Commands -->
+    <Commands>
+        <CheckModel>
+            python check_model.py
+        </CheckModel>
+        
+        <RetrainWithMoreData>
+            # Edit train_nhl_optimized.py to use days_back=365
+            python train/train_nhl_optimized.py
+        </RetrainWithMoreData>
+        
+        <TestAPI>
+            python test_api.py
+        </TestAPI>
+        
+        <Research>
+            python research/discover_nhl_endpoints.py
+            python research/analyze_local_repos.py
+        </Research>
+    </Commands>
+</AITrainingLog>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PenguinsAIProjectTransfer version="3.0" timestamp="2025-05-27T18:00:00">
+    
+    <!-- PROJECT IDENTITY -->
+    <Project>
+        <name>Pittsburgh Penguins AI Analytics Platform</name>
+        <purpose>NHL hockey analytics with Expected Goals (xG) prediction</purpose>
+        <github>https://github.com/renewedCRMsolutions/penguins-ai</github>
+        <stage>Model Trained - Needs Improvement</stage>
+    </Project>
+
+    <nextSteps>research for shot speeds and more metrics https://edge.nhl.com/en/home</nextSteps>
+    
+    <!-- SYSTEM CONFIGURATION -->
+    <SystemSpecs>
+        <hardware>
+            <model>ThinkPad P16 Gen 2</model>
+            <cpu>Intel i9-13950HX (24 cores, 32 threads)</cpu>
+            <ram>64GB DDR5</ram>
+            <gpu>NVIDIA RTX 2000 Ada Generation (8GB)</gpu>
+        </hardware>
+        <benchmark_results>
+            <optimal_threads>20</optimal_threads>
+            <max_memory_gb>47</max_memory_gb>
+            <gpu_speedup>4.2x</gpu_speedup>
+            <gpu_enabled>true</gpu_enabled>
+        </benchmark_results>
+        <config_location>config/optimal_settings.py</config_location>
+    </SystemSpecs>
+    
+    <!-- CURRENT STATE -->
+    <ProjectState>
+        <Backend status="complete">
+            <location>penguins_ai/</location>
+            <api>FastAPI on http://localhost:8000</api>
+            <endpoints>
+                <endpoint>/predict/expected-goals</endpoint>
+                <endpoint>/predict/batch</endpoint>
+                <endpoint>/model/info</endpoint>
+            </endpoints>
+            <note>Using real NHL data model - AUC 0.64 (needs improvement)
+                the goal is 85%+</note>
+        </Backend>
+        
+        <Frontend status="complete">
+            <location>penguins-frontend/</location>
+            <framework>Vue 3 + TypeScript + Vite</framework>
+            <url>http://localhost:5173</url>
+        </Frontend>
+        
+        <Models status="trained_but_underperforming">
+            <production_model>
+                <file>models/production/xg_model_nhl.pkl</file>
+                <size>1.17MB</size>
+                <auc>0.640</auc>
+                <accuracy>0.933</accuracy>
+                <samples>3540</samples>
+                <trained>2025-05-27 14:23</trained>
+            </production_model>
+            <issues>
+                <issue>AUC below target (0.64 vs 0.75+ goal)</issue>
+                <issue>Not enough training data (3,540 shots)</issue>
+                <issue>Missing advanced features (shot speed, pre-shot movement)</issue>
+            </issues>
+        </Models>
+        
+        <Research status="active">
+            <new_scripts>
+                <script>research/analyze_local_repos.py</script>
+                <script>research/discover_nhl_endpoints.py (pending)</script>
+                <script>research/auto_discover_and_analyze.py (pending)</script>
+            </new_scripts>
+            <local_repos>
+                <repo>NHL-API-Reference/</repo>
+                <repo>nhl-api-endpoints/</repo>
+                <repo>nhl-odds/</repo>
+            </local_repos>
+        </Research>
+    </ProjectState>
+    
+    <!-- UPDATED FILE STRUCTURE -->
+    <CurrentFileStructure>
+        penguins_ai/
+        ├── api/
+        │   └── main.py
+        ├── config/
+        │   ├── optimal_settings.py
+        │   ├── catboost_config.py
+        │   └── gpu_configs.py
+        ├── data/
+        │   ├── nhl/
+        │   │   └── shots_raw.csv (3,540 shots)
+        │   └── nhl_api_samples/ (from earlier exploration)
+        ├── models/
+        │   ├── production/
+        │   │   ├── xg_model_nhl.pkl
+        │   │   ├── xg_features_nhl.pkl
+        │   │   └── model_metadata.pkl
+        │   └── nhl_ensemble.py
+        ├── research/
+        │   ├── analyze_local_repos.py
+        │   └── repo_analysis_report.json
+        ├── scripts/
+        │   ├── benchmark_system.py
+        │   ├── fetch_all_nhl_endpoints.py
+        │   └── test_api.py
+        ├── train/
+        │   └── train_nhl_optimized.py
+        ├── NHL-API-Reference/ (cloned repo)
+        ├── nhl-api-endpoints/ (cloned repo)
+        └── nhl-odds/ (cloned repo)
+    </CurrentFileStructure>
+    
+    <!-- IMMEDIATE PRIORITIES -->
+    <NextActions>
+        <Action priority="1" status="urgent">
+            <task>Improve model AUC from 0.64 to 0.75+</task>
+            <steps>
+                - Collect more data (target: 50,000+ shots)
+                - Add missing features (pre-shot movement, player quality)
+                - Implement ensemble methods
+            </steps>
+        </Action>
+        
+        <Action priority="2" status="research">
+            <task>Discover all available NHL data</task>
+            <steps>
+                - Run endpoint discovery script
+                - Analyze MoneyPuck and other sites
+                - Find shot speed data sources
+            </steps>
+        </Action>
+        
+        <Action priority="3" status="planned">
+            <task>Implement advanced features</task>
+            <features>
+                - Pre-shot event sequence (last 3-5 events)
+                - Player/goalie quality metrics
+                - Line chemistry factors
+                - Shot speed (if available)
+            </features>
+        </Action>
+    </NextActions>
+    
+    <!-- PERFORMANCE TARGETS -->
+    <ModelTargets>
+        <current>
+            <auc>0.640</auc>
+            <benchmark>Below industry standard</benchmark>
+        </current>
+        <competition>
+            <moneypuck>0.78-0.80</moneypuck>
+            <evolving_hockey>0.76-0.78</evolving_hockey>
+            <academic_best>0.77</academic_best>
+        </competition>
+        <goals>
+            <minimum>0.75 (competitive)</minimum>
+            <target>0.78 (impressive)</target>
+            <stretch>0.82 (NHL team level)</stretch>
+        </goals>
+    </ModelTargets>
+    
+    <!-- DISCOVERED INSIGHTS -->
+    <Insights>
+        <data_limitations>
+            - NHL API doesn't provide shot speed
+            - Limited to basic play-by-play data
+            - Need to aggregate multiple sources
+        </data_limitations>
+        <feature_gaps>
+            - Missing pre-shot movement patterns
+            - No player quality adjustments
+            - No goalie fatigue metrics
+            - No line chemistry data
+        </feature_gaps>
+        <opportunities>
+            - Scrape MoneyPuck for xG comparisons
+            - Use shift data for fatigue metrics
+            - Build player quality lookup tables
+            - Implement sequence modeling for pre-shot events
+        </opportunities>
+    </Insights>
+    
+    <!-- QUICK COMMANDS -->
+    <QuickReference>
+        # Check current model performance
+        python check_model.py
+        
+        # Re-train with more data
+        python train/train_nhl_optimized.py
+        
+        # Research commands
+        python research/analyze_local_repos.py
+        python research/discover_nhl_endpoints.py
+        
+        # Start services
+        python -m uvicorn api.main:app --reload
+        cd penguins-frontend && npm run dev
+    </QuickReference>
+</PenguinsAIProjectTransfer>

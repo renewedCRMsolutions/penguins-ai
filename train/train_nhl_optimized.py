@@ -7,13 +7,13 @@ from config.optimal_settings import SYSTEM_OPTIMAL_CONFIG
 
 import asyncio
 import aiohttp
-import requests
+# import requests  # Unused import
 import pandas as pd
 import numpy as np
 import xgboost as xgb
 import joblib
 import os
-import json
+# import json  # Unused import
 from datetime import datetime, timedelta
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score, accuracy_score, classification_report

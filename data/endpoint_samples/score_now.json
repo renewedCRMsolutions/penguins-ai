@@ -1,0 +1,464 @@
+{
+  "prevDate": "2025-05-26",
+  "currentDate": "2025-05-27",
+  "nextDate": "2025-05-28",
+  "gameWeek": [
+    {
+      "date": "2025-05-24",
+      "dayAbbrev": "SAT",
+      "numberOfGames": 1
+    },
+    {
+      "date": "2025-05-25",
+      "dayAbbrev": "SUN",
+      "numberOfGames": 1
+    },
+    {
+      "date": "2025-05-26",
+      "dayAbbrev": "MON",
+      "numberOfGames": 1
+    },
+    {
+      "date": "2025-05-27",
+      "dayAbbrev": "TUE",
+      "numberOfGames": 1
+    },
+    {
+      "date": "2025-05-28",
+      "dayAbbrev": "WED",
+      "numberOfGames": 1
+    },
+    {
+      "date": "2025-05-29",
+      "dayAbbrev": "THU",
+      "numberOfGames": 1
+    },
+    {
+      "date": "2025-05-30",
+      "dayAbbrev": "FRI",
+      "numberOfGames": 1
+    }
+  ],
+  "oddsPartners": [
+    {
+      "partnerId": 2,
+      "country": "SE",
+      "name": "Unibet",
+      "imageUrl": "https://assets.nhle.com/betting_partner/unibet.svg",
+      "siteUrl": "https://www.unibet.se/betting/sports/filter/ice_hockey/nhl/all/matches",
+      "bgColor": "#14805E",
+      "textColor": "#FFFFFF",
+      "accentColor": "#3AAA35"
+    },
+    {
+      "partnerId": 3,
+      "country": "CZ",
+      "name": "Tipsport",
+      "imageUrl": "https://assets.nhle.com/betting_partner/tipsport.svg",
+      "siteUrl": "https://www.tipsport.cz/PartnerRedirectAction.do?pid=16961&sid=20360&bid=34954&tid=11268",
+      "bgColor": "#2497F2",
+      "textColor": "#FFFFFF",
+      "accentColor": "#FFFFFF"
+    },
+    {
+      "partnerId": 6,
+      "country": "FI",
+      "name": "Veikkaus",
+      "imageUrl": "https://assets.nhle.com/betting_partner/veikkaus.svg",
+      "siteUrl": "https://www.veikkaus.fi/fi/vedonlyonti/pitkaveto?t=3-2-1_NHL",
+      "bgColor": "#0025F5",
+      "textColor": "#FFFFFF",
+      "accentColor": "#FFFFFF"
+    },
+    {
+      "partnerId": 7,
+      "country": "CA",
+      "name": "FanDuel",
+      "imageUrl": "https://assets.nhle.com/betting_partner/fanduel.svg",
+      "siteUrl": "https://fanduel.com",
+      "bgColor": "#0078ff",
+      "textColor": "#FFFFFF",
+      "accentColor": "#FFFFFF"
+    },
+    {
+      "partnerId": 8,
+      "country": "DE",
+      "name": "Sportradar",
+      "imageUrl": "https://assets.nhle.com/betting_partner/sportsradar.svg",
+      "siteUrl": "https://sportradar.com",
+      "bgColor": "#000000",
+      "textColor": "#FFFFFF",
+      "accentColor": "#E6E6E6"
+    },
+    {
+      "partnerId": 9,
+      "country": "US",
+      "name": "DraftKings",
+      "imageUrl": "https://assets.nhle.com/betting_partner/draftkings.svg",
+      "siteUrl": "https://dksb.sng.link/As9kz/rpj89?_dl=dksb%3A%2F%2Fgateway%3Fs%3D158542143&pcid=331060&psn=1320&pcn=NHLSportsbook&pscn=OddsByDK&pcrn=Static&pscid=Evergreen&pcrid=xx&wpcid=331060&wpsrc=1320&wpcn=NHLSportsbook&wpscn=OddsByDK&wpcrn=Static&wpscid=Evergreen&wpcrid=xx&_forward_params=1",
+      "bgColor": "#000000",
+      "textColor": "#FFFFFF",
+      "accentColor": "#FFFFFF"
+    },
+    {
+      "partnerId": 10,
+      "country": "SK",
+      "name": "Doxxbet",
+      "imageUrl": "https://assets.nhle.com/betting_partner/doxxbet.svg",
+      "siteUrl": "https://www.doxxbet.sk/sk/sportove-tipovanie-online/kurzy/ladovy-hokej/usa/nhl/?msID=21&mbID=27",
+      "bgColor": "#f30d31",
+      "textColor": "#202020",
+      "accentColor": "#ffffff"
+    }
+  ],
+  "games": [
+    {
+      "id": 2024030324,
+      "season": 20242025,
+      "gameType": 3,
+      "gameDate": "2025-05-27",
+      "venue": {
+        "default": "Rogers Place"
+      },
+      "startTimeUTC": "2025-05-28T00:00:00Z",
+      "easternUTCOffset": "-04:00",
+      "venueUTCOffset": "-06:00",
+      "tvBroadcasts": [
+        {
+          "id": 309,
+          "market": "N",
+          "countryCode": "US",
+          "network": "ESPN",
+          "sequenceNumber": 10
+        },
+        {
+          "id": 329,
+          "market": "N",
+          "countryCode": "US",
+          "network": "ESPN+",
+          "sequenceNumber": 16
+        },
+        {
+          "id": 4,
+          "market": "N",
+          "countryCode": "CA",
+          "network": "CBC",
+          "sequenceNumber": 25
+        },
+        {
+          "id": 282,
+          "market": "N",
+          "countryCode": "CA",
+          "network": "SN",
+          "sequenceNumber": 101
+        },
+        {
+          "id": 281,
+          "market": "N",
+          "countryCode": "CA",
+          "network": "TVAS",
+          "sequenceNumber": 109
+        }
+      ],
+      "gameState": "FINAL",
+      "gameScheduleState": "OK",
+      "awayTeam": {
+        "id": 25,
+        "name": {
+          "default": "Stars"
+        },
+        "abbrev": "DAL",
+        "score": 1,
+        "sog": 29,
+        "logo": "https://assets.nhle.com/logos/nhl/svg/DAL_light.svg"
+      },
+      "homeTeam": {
+        "id": 22,
+        "name": {
+          "default": "Oilers"
+        },
+        "abbrev": "EDM",
+        "score": 4,
+        "sog": 33,
+        "logo": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg"
+      },
+      "seriesStatus": {
+        "round": 3,
+        "seriesAbbrev": "WCF",
+        "seriesTitle": "Conference Finals",
+        "seriesLetter": "N",
+        "neededToWin": 4,
+        "topSeedTeamAbbrev": "DAL",
+        "topSeedWins": 1,
+        "bottomSeedTeamAbbrev": "EDM",
+        "bottomSeedWins": 3,
+        "gameNumberOfSeries": 4
+      },
+      "gameCenterLink": "/gamecenter/dal-vs-edm/2025/05/27/2024030324",
+      "seriesUrl": "/schedule/playoff-series/2025/series-n/oilers-vs-stars",
+      "threeMinRecap": "/video/dal-at-edm-recap-6373551423112",
+      "threeMinRecapFr": "/fr/video/dal-vs-edm-27-05-2025-resume-6373552291112",
+      "condensedGame": "/video/dal-at-edm-condensed-game-6373551518112",
+      "condensedGameFr": "/fr/video/match-condense-stars-oilers-27-05-2025-6373551809112",
+      "clock": {
+        "timeRemaining": "00:00",
+        "secondsRemaining": 0,
+        "running": false,
+        "inIntermission": false
+      },
+      "neutralSite": false,
+      "venueTimezone": "America/Edmonton",
+      "period": 3,
+      "periodDescriptor": {
+        "number": 3,
+        "periodType": "REG",
+        "maxRegulationPeriods": 3
+      },
+      "gameOutcome": {
+        "lastPeriodType": "REG"
+      },
+      "goals": [
+        {
+          "period": 1,
+          "periodDescriptor": {
+            "number": 1,
+            "periodType": "REG",
+            "maxRegulationPeriods": 3
+          },
+          "timeInPeriod": "11:23",
+          "playerId": 8477934,
+          "name": {
+            "default": "L. Draisaitl"
+          },
+          "firstName": {
+            "default": "Leon"
+          },
+          "lastName": {
+            "default": "Draisaitl"
+          },
+          "goalModifier": "none",
+          "assists": [
+            {
+              "playerId": 8476454,
+              "name": {
+                "default": "R. Nugent-Hopkins"
+              },
+              "assistsToDate": 12
+            },
+            {
+              "playerId": 8470621,
+              "name": {
+                "default": "C. Perry"
+              },
+              "assistsToDate": 3
+            }
+          ],
+          "mugshot": "https://assets.nhle.com/mugs/nhl/20242025/EDM/8477934.png",
+          "teamAbbrev": "EDM",
+          "goalsToDate": 7,
+          "awayScore": 0,
+          "homeScore": 1,
+          "strength": "pp",
+          "highlightClipSharingUrl": "https://nhl.com/video/dal-edm-draisaitl-scores-ppg-against-jake-oettinger-6373547922112",
+          "highlightClipSharingUrlFr": "https://nhl.com/fr/video/dal-edm-draisaitl-marque-un-but-en-a-n-contre-jake-oettinger-6373549553112",
+          "highlightClip": 6373547922112,
+          "highlightClipFr": 6373549553112,
+          "discreteClip": 6373549252112,
+          "discreteClipFr": 6373549457112
+        },
+        {
+          "period": 2,
+          "periodDescriptor": {
+            "number": 2,
+            "periodType": "REG",
+            "maxRegulationPeriods": 3
+          },
+          "timeInPeriod": "06:57",
+          "playerId": 8480027,
+          "name": {
+            "default": "J. Robertson"
+          },
+          "firstName": {
+            "default": "Jason"
+          },
+          "lastName": {
+            "default": "Robertson"
+          },
+          "goalModifier": "none",
+          "assists": [
+            {
+              "playerId": 8481581,
+              "name": {
+                "default": "T. Harley"
+              },
+              "assistsToDate": 8
+            },
+            {
+              "playerId": 8475798,
+              "name": {
+                "default": "M. Granlund"
+              },
+              "assistsToDate": 5
+            }
+          ],
+          "mugshot": "https://assets.nhle.com/mugs/nhl/20242025/DAL/8480027.png",
+          "teamAbbrev": "DAL",
+          "goalsToDate": 2,
+          "awayScore": 1,
+          "homeScore": 1,
+          "strength": "pp",
+          "highlightClipSharingUrl": "https://nhl.com/video/dal-edm-robertson-scores-ppg-against-stuart-skinner-6373548627112",
+          "highlightClipSharingUrlFr": "https://nhl.com/fr/video/dal-edm-robertson-marque-un-but-en-a-n-contre-stuart-skinner-6373547831112",
+          "highlightClip": 6373548627112,
+          "highlightClipFr": 6373547831112,
+          "discreteClip": 6373550681112,
+          "discreteClipFr": 6373549588112
+        },
+        {
+          "period": 2,
+          "periodDescriptor": {
+            "number": 2,
+            "periodType": "REG",
+            "maxRegulationPeriods": 3
+          },
+          "timeInPeriod": "09:20",
+          "playerId": 8470621,
+          "name": {
+            "default": "C. Perry"
+          },
+          "firstName": {
+            "default": "Corey"
+          },
+          "lastName": {
+            "default": "Perry"
+          },
+          "goalModifier": "none",
+          "assists": [
+            {
+              "playerId": 8476454,
+              "name": {
+                "default": "R. Nugent-Hopkins"
+              },
+              "assistsToDate": 13
+            },
+            {
+              "playerId": 8478402,
+              "name": {
+                "default": "C. McDavid"
+              },
+              "assistsToDate": 18
+            }
+          ],
+          "mugshot": "https://assets.nhle.com/mugs/nhl/20242025/EDM/8470621.png",
+          "teamAbbrev": "EDM",
+          "goalsToDate": 6,
+          "awayScore": 1,
+          "homeScore": 2,
+          "strength": "pp",
+          "highlightClipSharingUrl": "https://nhl.com/video/dal-edm-perry-scores-ppg-against-jake-oettinger-6373549595112",
+          "highlightClipSharingUrlFr": "https://nhl.com/fr/video/dal-edm-perry-marque-un-but-en-a-n-contre-jake-oettinger-6373551177112",
+          "highlightClip": 6373549595112,
+          "highlightClipFr": 6373551177112,
+          "discreteClip": 6373550889112,
+          "discreteClipFr": 6373549500112
+        },
+        {
+          "period": 3,
+          "periodDescriptor": {
+            "number": 3,
+            "periodType": "REG",
+            "maxRegulationPeriods": 3
+          },
+          "timeInPeriod": "17:33",
+          "playerId": 8477953,
+          "name": {
+            "default": "K. Kapanen"
+          },
+          "firstName": {
+            "default": "Kasperi"
+          },
+          "lastName": {
+            "default": "Kapanen"
+          },
+          "goalModifier": "empty-net",
+          "assists": [
+            {
+              "playerId": 8476967,
+              "name": {
+                "default": "B. Kulak"
+              },
+              "assistsToDate": 4
+            },
+            {
+              "playerId": 8477934,
+              "name": {
+                "default": "L. Draisaitl"
+              },
+              "assistsToDate": 16
+            }
+          ],
+          "mugshot": "https://assets.nhle.com/mugs/nhl/20242025/EDM/8477953.png",
+          "teamAbbrev": "EDM",
+          "goalsToDate": 2,
+          "awayScore": 1,
+          "homeScore": 3,
+          "strength": "ev",
+          "highlightClipSharingUrl": "https://nhl.com/video/dal-edm-kapanen-scores-empty-net-goal-6373549748112",
+          "highlightClipSharingUrlFr": "https://nhl.com/fr/video/dal-edm-kapanen-edm-marque-un-but-dans-un-filet-desert-6373550230112",
+          "highlightClip": 6373549748112,
+          "highlightClipFr": 6373550230112,
+          "discreteClip": 6373550934112,
+          "discreteClipFr": 6373549945112
+        },
+        {
+          "period": 3,
+          "periodDescriptor": {
+            "number": 3,
+            "periodType": "REG",
+            "maxRegulationPeriods": 3
+          },
+          "timeInPeriod": "19:10",
+          "playerId": 8474641,
+          "name": {
+            "default": "A. Henrique"
+          },
+          "firstName": {
+            "default": "Adam"
+          },
+          "lastName": {
+            "default": "Henrique"
+          },
+          "goalModifier": "empty-net",
+          "assists": [
+            {
+              "playerId": 8478402,
+              "name": {
+                "default": "C. McDavid"
+              },
+              "assistsToDate": 19
+            },
+            {
+              "playerId": 8478013,
+              "name": {
+                "default": "J. Walman"
+              },
+              "assistsToDate": 3
+            }
+          ],
+          "mugshot": "https://assets.nhle.com/mugs/nhl/20242025/EDM/8474641.png",
+          "teamAbbrev": "EDM",
+          "goalsToDate": 4,
+          "awayScore": 1,
+          "homeScore": 4,
+          "strength": "ev",
+          "highlightClipSharingUrl": "https://nhl.com/video/dal-edm-henrique-scores-empty-net-goal-6373552193112",
+          "highlightClipSharingUrlFr": "https://nhl.com/fr/video/dal-edm-henrique-edm-marque-un-but-dans-un-filet-desert-6373550237112",
+          "highlightClip": 6373552193112,
+          "highlightClipFr": 6373550237112,
+          "discreteClip": 6373550449112,
+          "discreteClipFr": 6373551038112
+        }
+      ]
+    }
+  ]
+}

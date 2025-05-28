@@ -4,10 +4,10 @@
 import os
 import json
 import re
-from pathlib import Path
+# from pathlib import Path  # Unused import
 from collections import defaultdict
 from datetime import datetime
-import ast
+# import ast  # Unused import
 
 
 class LocalRepoAnalyzer:

@@ -1,0 +1,20 @@
+{
+  "homeTeam": {
+    "id": 7,
+    "commonName": {
+      "default": "Sabres"
+    },
+    "abbrev": "BUF",
+    "score": 1,
+    "sog": 31,
+    "logo": "https://assets.nhle.com/logos/nhl/svg/BUF_light.svg",
+    "darkLogo": "https://assets.nhle.com/logos/nhl/svg/BUF_dark.svg",
+    "placeName": {
+      "default": "Buffalo"
+    },
+    "placeNameWithPreposition": {
+      "default": "Buffalo",
+      "fr": "de Buffalo"
+    }
+  }
+}

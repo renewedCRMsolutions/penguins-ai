@@ -2,12 +2,12 @@
 
 import time
 import psutil
-import platform
+# import platform  # Unused import
 import torch
-import tensorflow as tf
+# import tensorflow as tf  # Unused import
 import xgboost as xgb
 import numpy as np
-import pandas as pd
+# import pandas as pd  # Unused import
 from sklearn.model_selection import train_test_split
 import GPUtil
 import cpuinfo
@@ -81,7 +81,7 @@ class SystemBenchmark:
             print(f"Training time: {train_time:.2f}s")
         
         # Find optimal
-        optimal_threads = min(results, key=results.get)
+        optimal_threads = min(results.keys(), key=lambda k: results[k])
         print(f"\n✅ Optimal XGBoost threads: {optimal_threads}")
         
         return optimal_threads

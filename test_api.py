@@ -1,7 +1,7 @@
 # File: test_api.py
 
 import requests
-import json
+# import json  # Unused import
 
 def test_api():
     """Test the Expected Goals API"""
