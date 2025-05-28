@@ -1,0 +1,22 @@
+{
+  "collection_date": "2025-05-28T11:25:28.264049",
+  "total_games": 10,
+  "total_shots": 759,
+  "total_goals": 0,
+  "total_players": 327,
+  "total_goalies": 22,
+  "unique_shooters": 305,
+  "unique_player_names": 327,
+  "shot_types": {
+    "wrist": 424,
+    "snap": 117,
+    "slap": 83,
+    "tip-in": 53,
+    "backhand": 50,
+    "deflected": 18,
+    "wrap-around": 7,
+    "bat": 3,
+    "between-legs": 2,
+    "poke": 2
+  }
+}

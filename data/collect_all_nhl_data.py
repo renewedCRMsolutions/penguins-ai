@@ -42,6 +42,9 @@ class ComprehensiveNHLCollector:
         self.unique_player_ids = set()
         self.unique_goalie_ids = set()
 
+        # Cache for player names
+        self.player_name_cache = {}
+
         self.session = None
 
     async def __aenter__(self):
@@ -146,6 +149,48 @@ class ComprehensiveNHLCollector:
                 if shot_data:
                     self.all_shots.append(shot_data)
 
+    def build_game_roster(self, boxscore: Dict) -> Dict:
+        """Build roster mapping from boxscore - WORKING VERSION"""
+        roster = {}
+
+        # Players are in playerByGameStats!
+        if "playerByGameStats" in boxscore:
+            player_stats = boxscore["playerByGameStats"]
+
+            for team_key in ["homeTeam", "awayTeam"]:
+                if team_key in player_stats:
+                    team_data = player_stats[team_key]
+                    team_abbrev = boxscore.get(team_key, {}).get("abbrev", "")
+
+                    # Players are organized by position
+                    for position_group in ["forwards", "defense", "goalies"]:
+                        if position_group in team_data:
+                            for player in team_data[position_group]:
+                                player_id = str(player.get("playerId", ""))
+                                if player_id:
+                                    # Get the name from the nested structure
+                                    name_obj = player.get("name", {})
+                                    if isinstance(name_obj, dict):
+                                        name = name_obj.get("default", f"Player_{player_id}")
+                                    else:
+                                        name = str(name_obj) if name_obj else f"Player_{player_id}"
+
+                                    roster[player_id] = {
+                                        "name": name,
+                                        "position": player.get("position", ""),
+                                        "team": team_abbrev,
+                                        "sweaterNumber": player.get("sweaterNumber", ""),
+                                        "toi": player.get("toi", ""),
+                                        "goals": player.get("goals", 0),
+                                        "assists": player.get("assists", 0),
+                                        "shots": player.get("sog", 0),
+                                        "hits": player.get("hits", 0),
+                                        "blockedShots": player.get("blockedShots", 0),
+                                    }
+
+        logger.info(f"Built roster with {len(roster)} players")
+        return roster
+
     async def extract_complete_shot_data(
         self, shot_play: Dict, all_plays: List, game_id: str, roster: Dict, shifts: Optional[Dict], play_idx: int
     ) -> Optional[Dict]:
@@ -169,10 +214,11 @@ class ComprehensiveNHLCollector:
         shot_data["shot_distance"] = self.calculate_distance(shot_data["x_coord"], shot_data["y_coord"])
         shot_data["shot_angle"] = self.calculate_angle(shot_data["x_coord"], shot_data["y_coord"])
         shot_data["shot_type"] = details.get("shotType", "")
+        shot_data["zone_code"] = details.get("zoneCode", "")
 
         # CRITICAL: Get actual player IDs
-        shooter_id = details.get("shootingPlayerId")
-        goalie_id = details.get("goalieInNetId")
+        shooter_id = str(details.get("shootingPlayerId", ""))
+        goalie_id = str(details.get("goalieInNetId", ""))
 
         if not shooter_id:
             return None
@@ -185,9 +231,9 @@ class ComprehensiveNHLCollector:
         if goalie_id:
             self.unique_goalie_ids.add(goalie_id)
 
-        # Get player names from roster
-        shot_data["shooter_name"] = self.get_player_name(shooter_id, roster)
-        shot_data["goalie_name"] = self.get_player_name(goalie_id, roster) if goalie_id else None
+        # Get player names from roster or cache
+        shot_data["shooter_name"] = await self.get_player_name(shooter_id, roster)
+        shot_data["goalie_name"] = await self.get_player_name(goalie_id, roster) if goalie_id else None
 
         # CRITICAL: Get who was on ice
         on_ice = self.get_players_on_ice(shot_play, shifts, roster)
@@ -214,7 +260,51 @@ class ComprehensiveNHLCollector:
         shot_data["away_skaters"] = int(situation[1])
         shot_data["is_power_play"] = shot_data["home_skaters"] != shot_data["away_skaters"]
 
+        # Additional details
+        shot_data["home_sog"] = details.get("homeSOG", 0)
+        shot_data["away_sog"] = details.get("awaySOG", 0)
+
         return shot_data
+
+    async def get_player_name(self, player_id: str, roster: Dict) -> str:
+        """Get player name from roster or API"""
+        if not player_id:
+            return "Unknown"
+
+        # Check roster first
+        if player_id in roster:
+            return roster[player_id].get("name", f"Player_{player_id}")
+
+        # Check cache
+        if player_id in self.player_name_cache:
+            return self.player_name_cache[player_id]
+
+        # Fetch from API
+        name = await self.get_player_full_name(player_id)
+        self.player_name_cache[player_id] = name
+        return name
+
+    async def get_player_full_name(self, player_id: str) -> str:
+        """Get player full name from API"""
+        url = f"{self.base_url}/player/{player_id}/landing"
+        try:
+            async with self.session.get(url) as response:
+                if response.status == 200:
+                    data = await response.json()
+
+                    # Try multiple paths for the name
+                    full_name = (
+                        data.get("firstName", {}).get("default", "") + " " + data.get("lastName", {}).get("default", "")
+                    ).strip()
+
+                    if not full_name:
+                        full_name = data.get("fullName", "")
+
+                    return full_name if full_name else f"Player_{player_id}"
+        except Exception:
+            pass
+
+        return f"Player_{player_id}"
 
     def get_players_on_ice(self, play: Dict, shifts: Optional[Dict], roster: Dict) -> Dict:
         """Extract who was actually on ice during the shot"""
@@ -233,7 +323,7 @@ class ComprehensiveNHLCollector:
                 # Check if player was on ice at this time
                 if shift.get("period") == period and shift.get("startTime") <= time <= shift.get("endTime"):
 
-                    player_id = shift.get("playerId")
+                    player_id = str(shift.get("playerId", ""))
                     team_id = shift.get("teamId")
 
                     if team_id == shifts.get("homeTeamId"):
@@ -252,10 +342,10 @@ class ComprehensiveNHLCollector:
 
         # Get player names
         on_ice_data["home_players_on_ice_names"] = [
-            self.get_player_name(pid, roster) for pid in on_ice_data.get("home_players_on_ice_ids", [])
+            roster.get(pid, {}).get("name", f"Player_{pid}") for pid in on_ice_data.get("home_players_on_ice_ids", [])
         ]
         on_ice_data["away_players_on_ice_names"] = [
-            self.get_player_name(pid, roster) for pid in on_ice_data.get("away_players_on_ice_ids", [])
+            roster.get(pid, {}).get("name", f"Player_{pid}") for pid in on_ice_data.get("away_players_on_ice_ids", [])
         ]
 
         # Create individual columns for easier analysis
@@ -265,6 +355,13 @@ class ComprehensiveNHLCollector:
 
             on_ice_data[f"home_player_{i}_id"] = home_ids[i] if i < len(home_ids) else None
             on_ice_data[f"away_player_{i}_id"] = away_ids[i] if i < len(away_ids) else None
+
+            # Also add names
+            home_names = on_ice_data.get("home_players_on_ice_names", [])
+            away_names = on_ice_data.get("away_players_on_ice_names", [])
+
+            on_ice_data[f"home_player_{i}_name"] = home_names[i] if i < len(home_names) else None
+            on_ice_data[f"away_player_{i}_name"] = away_names[i] if i < len(away_names) else None
 
         return on_ice_data
 
@@ -306,7 +403,12 @@ class ComprehensiveNHLCollector:
 
             # Add to sequence
             sequence_data["play_sequence"].append(
-                {"type": play_type, "time_diff": time_diff, "details": play.get("details", {})}
+                {
+                    "type": play_type,
+                    "time_diff": time_diff,
+                    "team": play.get("details", {}).get("eventOwnerTeamId", ""),
+                    "zone": play.get("details", {}).get("zoneCode", ""),
+                }
             )
 
             # Count events in last 30 seconds
@@ -420,15 +522,17 @@ class ComprehensiveNHLCollector:
             for i in range(6):
                 player_id = shot.get(f"home_player_{i}_id")
                 if player_id and pd.notna(player_id):
-                    home_players.append(player_id)
+                    home_players.append({"id": player_id, "name": shot.get(f"home_player_{i}_name", "")})
 
             # Create pairwise relationships
             for i, p1 in enumerate(home_players):
                 for p2 in home_players[i + 1 :]:
                     relationships.append(
                         {
-                            "player_1": p1,
-                            "player_2": p2,
+                            "player_1_id": p1["id"],
+                            "player_1_name": p1["name"],
+                            "player_2_id": p2["id"],
+                            "player_2_name": p2["name"],
                             "team": "home",
                             "game_id": shot["game_id"],
                             "situation": f"{shot['home_skaters']}v{shot['away_skaters']}",
@@ -451,6 +555,7 @@ class ComprehensiveNHLCollector:
             "total_players": len(self.all_players),
             "total_goalies": len(self.all_goalies),
             "unique_shooters": len(self.unique_player_ids),
+            "unique_player_names": len(self.player_name_cache),
             "shot_types": pd.DataFrame(self.all_shots)["shot_type"].value_counts().to_dict() if self.all_shots else {},
         }
 
@@ -506,12 +611,22 @@ class ComprehensiveNHLCollector:
                 if response.status == 200:
                     data = await response.json()
 
+                    # Extract name
+                    full_name = (
+                        data.get("firstName", {}).get("default", "") + " " + data.get("lastName", {}).get("default", "")
+                    ).strip()
+
                     # Extract relevant stats
                     stats = {
                         "player_id": player_id,
-                        "name": data.get("fullName", ""),
+                        "name": full_name if full_name else f"Player_{player_id}",
                         "position": data.get("position", ""),
-                        "team": data.get("currentTeamAbbrev", ""),
+                        "shoots": data.get("shootsCatches", ""),
+                        "birth_date": data.get("birthDate", ""),
+                        "birth_city": data.get("birthCity", {}).get("default", ""),
+                        "birth_country": data.get("birthCountry", ""),
+                        "height": data.get("heightInInches", 0),
+                        "weight": data.get("weightInPounds", 0),
                     }
 
                     # Get current season stats
@@ -522,52 +637,26 @@ class ComprehensiveNHLCollector:
                                 "games_played": season_stats.get("gamesPlayed", 0),
                                 "goals": season_stats.get("goals", 0),
                                 "assists": season_stats.get("assists", 0),
+                                "points": season_stats.get("points", 0),
+                                "plus_minus": season_stats.get("plusMinus", 0),
                                 "shots": season_stats.get("shots", 0),
                                 "shooting_pct": season_stats.get("shootingPctg", 0),
                                 "save_pct": season_stats.get("savePctg", 0),  # For goalies
                                 "goals_against_avg": season_stats.get("goalsAgainstAverage", 0),
+                                "wins": season_stats.get("wins", 0),
+                                "losses": season_stats.get("losses", 0),
+                                "shutouts": season_stats.get("shutouts", 0),
                             }
                         )
+
+                    # Cache the name
+                    self.player_name_cache[player_id] = stats["name"]
 
                     return stats
 
         except Exception as e:
             logger.error(f"Error fetching stats for {player_id}: {e}")
         return None
-
-    def build_game_roster(self, boxscore: Dict) -> Dict:
-        """Build roster mapping from boxscore"""
-        roster = {}
-
-        for team in ["homeTeam", "awayTeam"]:
-            if team in boxscore:
-                # Players are usually under 'players' key
-                players = boxscore[team].get("players", {})
-
-                for player_key, player_data in players.items():
-                    # Extract player ID (might be in different formats)
-                    player_id = None
-                    if "playerId" in player_data:
-                        player_id = str(player_data["playerId"])
-                    elif player_key.startswith("ID"):
-                        player_id = player_key[2:]  # Remove 'ID' prefix
-                    else:
-                        player_id = player_key
-
-                    if player_id:
-                        roster[player_id] = {
-                            "name": player_data.get("name", {}).get("default", ""),
-                            "position": player_data.get("position", ""),
-                            "team": boxscore[team].get("abbrev", ""),
-                        }
-
-        return roster
-
-    def get_player_name(self, player_id: str, roster: Dict) -> Optional[str]:
-        """Get player name from roster"""
-        if player_id and str(player_id) in roster:
-            return roster[str(player_id)].get("name", f"Player_{player_id}")
-        return f"Player_{player_id}" if player_id else None
 
     @staticmethod
     def parse_time(time_str: str) -> float:
@@ -597,7 +686,7 @@ async def main():
     # Configuration
     start_date = "2024-10-01"  # Season start
     end_date = "2025-04-15"  # Regular season end
-    max_games = None  # Set to small number for testing
+    max_games = 10  # Set to None for all games, or a number for testing
 
     logger.info("=" * 60)
     logger.info("NHL COMPREHENSIVE DATA COLLECTION")
