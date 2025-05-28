@@ -1,0 +1,1127 @@
+{
+  "playerId": 8483495,
+  "isActive": true,
+  "currentTeamId": 1,
+  "currentTeamAbbrev": "NJD",
+  "fullTeamName": {
+    "default": "New Jersey Devils",
+    "fr": "Devils du New Jersey"
+  },
+  "teamCommonName": {
+    "default": "Devils"
+  },
+  "teamPlaceNameWithPreposition": {
+    "default": "New Jersey",
+    "fr": "du New Jersey"
+  },
+  "firstName": {
+    "default": "Simon",
+    "cs": "\u0160imon",
+    "sk": "\u0160imon"
+  },
+  "lastName": {
+    "default": "Nemec"
+  },
+  "badges": [],
+  "teamLogo": "https://assets.nhle.com/logos/nhl/svg/NJD_light.svg",
+  "sweaterNumber": 17,
+  "position": "D",
+  "headshot": "https://assets.nhle.com/mugs/nhl/20242025/NJD/8483495.png",
+  "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8483495.jpg",
+  "heightInInches": 73,
+  "heightInCentimeters": 185,
+  "weightInPounds": 190,
+  "weightInKilograms": 86,
+  "birthDate": "2004-02-15",
+  "birthCity": {
+    "default": "Liptovsk\u00fd Mikul\u00e1\u0161"
+  },
+  "birthCountry": "SVK",
+  "shootsCatches": "R",
+  "draftDetails": {
+    "year": 2022,
+    "teamAbbrev": "NJD",
+    "round": 1,
+    "pickInRound": 2,
+    "overallPick": 2
+  },
+  "playerSlug": "simon-nemec-8483495",
+  "inTop100AllTime": 0,
+  "inHHOF": 0,
+  "featuredStats": {
+    "season": 20242025,
+    "regularSeason": {
+      "subSeason": {
+        "assists": 2,
+        "gameWinningGoals": 1,
+        "gamesPlayed": 27,
+        "goals": 2,
+        "otGoals": 0,
+        "pim": 14,
+        "plusMinus": -10,
+        "points": 4,
+        "powerPlayGoals": 0,
+        "powerPlayPoints": 2,
+        "shootingPctg": 0.076923,
+        "shorthandedGoals": 0,
+        "shorthandedPoints": 0,
+        "shots": 26
+      },
+      "career": {
+        "assists": 18,
+        "gameWinningGoals": 2,
+        "gamesPlayed": 87,
+        "goals": 5,
+        "otGoals": 0,
+        "pim": 47,
+        "plusMinus": -17,
+        "points": 23,
+        "powerPlayGoals": 0,
+        "powerPlayPoints": 4,
+        "shootingPctg": 0.050499999999999996,
+        "shorthandedGoals": 0,
+        "shorthandedPoints": 0,
+        "shots": 99
+      }
+    },
+    "playoffs": {
+      "subSeason": {
+        "assists": 1,
+        "gameWinningGoals": 1,
+        "gamesPlayed": 4,
+        "goals": 1,
+        "otGoals": 1,
+        "pim": 2,
+        "plusMinus": 3,
+        "points": 2,
+        "powerPlayGoals": 0,
+        "powerPlayPoints": 0,
+        "shootingPctg": 0.166667,
+        "shorthandedGoals": 0,
+        "shorthandedPoints": 0,
+        "shots": 6
+      },
+      "career": {
+        "assists": 1,
+        "gameWinningGoals": 1,
+        "gamesPlayed": 4,
+        "goals": 1,
+        "otGoals": 1,
+        "pim": 2,
+        "plusMinus": 3,
+        "points": 2,
+        "powerPlayGoals": 0,
+        "powerPlayPoints": 0,
+        "shootingPctg": 0.1666,
+        "shorthandedGoals": 0,
+        "shorthandedPoints": 0,
+        "shots": 6
+      }
+    }
+  },
+  "careerTotals": {
+    "regularSeason": {
+      "assists": 18,
+      "avgToi": "18:21",
+      "gameWinningGoals": 2,
+      "gamesPlayed": 87,
+      "goals": 5,
+      "otGoals": 0,
+      "pim": 47,
+      "plusMinus": -17,
+      "points": 23,
+      "powerPlayGoals": 0,
+      "powerPlayPoints": 4,
+      "shootingPctg": 0.050499999999999996,
+      "shorthandedGoals": 0,
+      "shorthandedPoints": 0,
+      "shots": 99
+    },
+    "playoffs": {
+      "assists": 1,
+      "avgToi": "20:40",
+      "gameWinningGoals": 1,
+      "gamesPlayed": 4,
+      "goals": 1,
+      "otGoals": 1,
+      "pim": 2,
+      "plusMinus": 3,
+      "points": 2,
+      "powerPlayGoals": 0,
+      "powerPlayPoints": 0,
+      "shootingPctg": 0.1666,
+      "shorthandedGoals": 0,
+      "shorthandedPoints": 0,
+      "shots": 6
+    }
+  },
+  "shopLink": "#TODO",
+  "twitterLink": "#TODO",
+  "watchLink": "#TODO",
+  "last5Games": [
+    {
+      "assists": 1,
+      "gameDate": "2025-04-29",
+      "gameId": 2024030145,
+      "gameTypeId": 3,
+      "goals": 0,
+      "homeRoadFlag": "R",
+      "opponentAbbrev": "CAR",
+      "pim": 0,
+      "plusMinus": 1,
+      "points": 1,
+      "powerPlayGoals": 0,
+      "shifts": 31,
+      "shorthandedGoals": 0,
+      "shots": 1,
+      "teamAbbrev": "NJD",
+      "toi": "27:57"
+    },
+    {
+      "assists": 0,
+      "gameDate": "2025-04-27",
+      "gameId": 2024030144,
+      "gameTypeId": 3,
+      "goals": 0,
+      "homeRoadFlag": "H",
+      "opponentAbbrev": "CAR",
+      "pim": 0,
+      "plusMinus": 1,
+      "points": 0,
+      "powerPlayGoals": 0,
+      "shifts": 23,
+      "shorthandedGoals": 0,
+      "shots": 0,
+      "teamAbbrev": "NJD",
+      "toi": "17:51"
+    },
+    {
+      "assists": 0,
+      "gameDate": "2025-04-25",
+      "gameId": 2024030143,
+      "gameTypeId": 3,
+      "goals": 1,
+      "homeRoadFlag": "H",
+      "opponentAbbrev": "CAR",
+      "pim": 0,
+      "plusMinus": 1,
+      "points": 1,
+      "powerPlayGoals": 0,
+      "shifts": 26,
+      "shorthandedGoals": 0,
+      "shots": 5,
+      "teamAbbrev": "NJD",
+      "toi": "22:39"
+    },
+    {
+      "assists": 0,
+      "gameDate": "2025-04-22",
+      "gameId": 2024030142,
+      "gameTypeId": 3,
+      "goals": 0,
+      "homeRoadFlag": "R",
+      "opponentAbbrev": "CAR",
+      "pim": 2,
+      "plusMinus": 0,
+      "points": 0,
+      "powerPlayGoals": 0,
+      "shifts": 19,
+      "shorthandedGoals": 0,
+      "shots": 0,
+      "teamAbbrev": "NJD",
+      "toi": "14:12"
+    },
+    {
+      "assists": 0,
+      "gameDate": "2025-04-16",
+      "gameId": 2024021303,
+      "gameTypeId": 2,
+      "goals": 0,
+      "homeRoadFlag": "H",
+      "opponentAbbrev": "DET",
+      "pim": 2,
+      "plusMinus": -1,
+      "points": 0,
+      "powerPlayGoals": 0,
+      "shifts": 29,
+      "shorthandedGoals": 0,
+      "shots": 1,
+      "teamAbbrev": "NJD",
+      "toi": "21:46"
+    }
+  ],
+  "seasonTotals": [
+    {
+      "assists": 0,
+      "gameTypeId": 2,
+      "gamesPlayed": 2,
+      "goals": 0,
+      "leagueAbbrev": "QC Int PW",
+      "pim": 2,
+      "points": 0,
+      "season": 20162017,
+      "sequence": 306132,
+      "teamName": {
+        "default": "Slovakia HMS Select"
+      }
+    },
+    {
+      "assists": 16,
+      "gameTypeId": 2,
+      "gamesPlayed": 44,
+      "goals": 5,
+      "leagueAbbrev": "Slovakia U18",
+      "pim": 18,
+      "plusMinus": 1,
+      "points": 21,
+      "season": 20172018,
+      "sequence": 31373,
+      "teamName": {
+        "default": "Draci Liptovsky Mikulas U18"
+      }
+    },
+    {
+      "assists": 1,
+      "gameTypeId": 3,
+      "gamesPlayed": 7,
+      "goals": 0,
+      "leagueAbbrev": "Slovakia U18",
+      "pim": 6,
+      "plusMinus": -1,
+      "points": 1,
+      "season": 20172018,
+      "sequence": 31373,
+      "teamName": {
+        "default": "Draci Liptovsky Mikulas U18"
+      }
+    },
+    {
+      "assists": 25,
+      "gameTypeId": 2,
+      "gamesPlayed": 52,
+      "goals": 10,
+      "leagueAbbrev": "Slovakia U18",
+      "pim": 78,
+      "plusMinus": 2,
+      "points": 35,
+      "season": 20182019,
+      "sequence": 31373,
+      "teamName": {
+        "default": "Draci Liptovsky Mikulas U18"
+      }
+    },
+    {
+      "assists": 3,
+      "gameTypeId": 2,
+      "gamesPlayed": 12,
+      "goals": 0,
+      "leagueAbbrev": "Slovakia",
+      "pim": 0,
+      "plusMinus": 2,
+      "points": 3,
+      "season": 20192020,
+      "sequence": 12338,
+      "teamName": {
+        "default": "HK Nitra"
+      }
+    },
+    {
+      "assists": 3,
+      "gameTypeId": 2,
+      "gamesPlayed": 4,
+      "goals": 1,
+      "leagueAbbrev": "Slovakia2",
+      "pim": 6,
+      "plusMinus": 3,
+      "points": 4,
+      "season": 20192020,
+      "sequence": 15927,
+      "teamName": {
+        "default": "HK Levice"
+      }
+    },
+    {
+      "assists": 5,
+      "gameTypeId": 2,
+      "gamesPlayed": 13,
+      "goals": 3,
+      "leagueAbbrev": "Slovakia U20",
+      "pim": 4,
+      "plusMinus": -1,
+      "points": 8,
+      "season": 20192020,
+      "sequence": 40645,
+      "teamName": {
+        "default": "HK Nitra U20"
+      }
+    },
+    {
+      "assists": 0,
+      "gameTypeId": 2,
+      "gamesPlayed": 4,
+      "goals": 0,
+      "leagueAbbrev": "Hlinka Gretzky Cup",
+      "pim": 0,
+      "plusMinus": 1,
+      "points": 0,
+      "season": 20192020,
+      "sequence": 158310,
+      "teamName": {
+        "default": "Slovakia U18"
+      }
+    },
+    {
+      "assists": 4,
+      "gameTypeId": 2,
+      "gamesPlayed": 12,
+      "goals": 3,
+      "leagueAbbrev": "Slovakia U20",
+      "pim": 2,
+      "plusMinus": -2,
+      "points": 7,
+      "season": 20192020,
+      "sequence": 162365,
+      "teamName": {
+        "default": "Team Slovakia U18"
+      }
+    },
+    {
+      "assists": 17,
+      "gameTypeId": 2,
+      "gamesPlayed": 37,
+      "goals": 2,
+      "leagueAbbrev": "Slovakia",
+      "pim": 12,
+      "plusMinus": -10,
+      "points": 19,
+      "season": 20202021,
+      "sequence": 12338,
+      "teamName": {
+        "default": "HK Nitra"
+      }
+    },
+    {
+      "assists": 1,
+      "gameTypeId": 2,
+      "gamesPlayed": 5,
+      "goals": 0,
+      "leagueAbbrev": "WC",
+      "pim": 0,
+      "plusMinus": -3,
+      "points": 1,
+      "season": 20202021,
+      "sequence": 17315,
+      "teamName": {
+        "default": "Slovakia"
+      }
+    },
+    {
+      "assists": 4,
+      "gameTypeId": 2,
+      "gamesPlayed": 5,
+      "goals": 0,
+      "leagueAbbrev": "WJC-20",
+      "pim": 2,
+      "plusMinus": -4,
+      "points": 4,
+      "season": 20202021,
+      "sequence": 17376,
+      "teamName": {
+        "default": "Slovakia U20"
+      }
+    },
+    {
+      "assists": 0,
+      "gameTypeId": 3,
+      "gamesPlayed": 5,
+      "goals": 0,
+      "leagueAbbrev": "Slovakia",
+      "pim": 0,
+      "plusMinus": -4,
+      "points": 0,
+      "season": 20202021,
+      "sequence": 12338,
+      "teamName": {
+        "default": "HK Nitra"
+      }
+    },
+    {
+      "assists": 25,
+      "gameTypeId": 2,
+      "gamesPlayed": 39,
+      "goals": 1,
+      "leagueAbbrev": "Slovakia",
+      "pim": 20,
+      "plusMinus": 13,
+      "points": 26,
+      "season": 20212022,
+      "sequence": 12338,
+      "teamName": {
+        "default": "HK Nitra"
+      }
+    },
+    {
+      "assists": 1,
+      "gameTypeId": 2,
+      "gamesPlayed": 7,
+      "goals": 0,
+      "leagueAbbrev": "OG",
+      "pim": 2,
+      "plusMinus": -2,
+      "points": 1,
+      "season": 20212022,
+      "sequence": 17072,
+      "teamName": {
+        "default": "Slovakia"
+      }
+    },
+    {
+      "assists": 1,
+      "gameTypeId": 2,
+      "gamesPlayed": 3,
+      "goals": 0,
+      "leagueAbbrev": "OGQ",
+      "pim": 0,
+      "plusMinus": 2,
+      "points": 1,
+      "season": 20212022,
+      "sequence": 17075,
+      "teamName": {
+        "default": "Slovakia"
+      }
+    },
+    {
+      "assists": 5,
+      "gameTypeId": 2,
+      "gamesPlayed": 8,
+      "goals": 1,
+      "leagueAbbrev": "WC",
+      "pim": 2,
+      "plusMinus": 2,
+      "points": 6,
+      "season": 20212022,
+      "sequence": 17315,
+      "teamName": {
+        "default": "Slovakia"
+      }
+    },
+    {
+      "assists": 2,
+      "gameTypeId": 2,
+      "gamesPlayed": 1,
+      "goals": 0,
+      "leagueAbbrev": "WJC-18 D1A",
+      "pim": 0,
+      "plusMinus": -1,
+      "points": 2,
+      "season": 20212022,
+      "sequence": 17355,
+      "teamName": {
+        "default": "Slovakia U18"
+      }
+    },
+    {
+      "assists": 5,
+      "gameTypeId": 2,
+      "gamesPlayed": 5,
+      "goals": 1,
+      "leagueAbbrev": "Hlinka Gretzky Cup",
+      "pim": 2,
+      "plusMinus": 0,
+      "points": 6,
+      "season": 20212022,
+      "sequence": 158310,
+      "teamName": {
+        "default": "Slovakia U18"
+      }
+    },
+    {
+      "assists": 12,
+      "gameTypeId": 3,
+      "gamesPlayed": 19,
+      "goals": 5,
+      "leagueAbbrev": "Slovakia",
+      "pim": 14,
+      "plusMinus": 2,
+      "points": 17,
+      "season": 20212022,
+      "sequence": 12338,
+      "teamName": {
+        "default": "HK Nitra"
+      }
+    },
+    {
+      "assists": 0,
+      "gameTypeId": 2,
+      "gamesPlayed": 5,
+      "goals": 0,
+      "leagueAbbrev": "WC",
+      "pim": 4,
+      "plusMinus": 2,
+      "points": 0,
+      "season": 20222023,
+      "sequence": 17315,
+      "teamName": {
+        "default": "Slovakia"
+      }
+    },
+    {
+      "assists": 4,
+      "gameTypeId": 2,
+      "gamesPlayed": 5,
+      "goals": 1,
+      "leagueAbbrev": "WJC-20",
+      "pim": 10,
+      "plusMinus": -1,
+      "points": 5,
+      "season": 20222023,
+      "sequence": 17376,
+      "teamName": {
+        "default": "Slovakia U20"
+      }
+    },
+    {
+      "assists": 22,
+      "gameTypeId": 2,
+      "gamesPlayed": 65,
+      "goals": 12,
+      "leagueAbbrev": "AHL",
+      "pim": 20,
+      "plusMinus": 13,
+      "points": 34,
+      "season": 20222023,
+      "sequence": 152247,
+      "teamName": {
+        "default": "Utica Comets"
+      }
+    },
+    {
+      "assists": 3,
+      "gameTypeId": 3,
+      "gamesPlayed": 6,
+      "goals": 1,
+      "leagueAbbrev": "AHL",
+      "pim": 0,
+      "plusMinus": 3,
+      "points": 4,
+      "season": 20222023,
+      "sequence": 152247,
+      "teamName": {
+        "default": "Utica Comets"
+      }
+    },
+    {
+      "assists": 16,
+      "avgToi": "19:52",
+      "faceoffWinningPctg": 0.0,
+      "gameTypeId": 2,
+      "gameWinningGoals": 1,
+      "gamesPlayed": 60,
+      "goals": 3,
+      "leagueAbbrev": "NHL",
+      "otGoals": 0,
+      "pim": 33,
+      "plusMinus": -7,
+      "points": 19,
+      "powerPlayGoals": 0,
+      "powerPlayPoints": 2,
+      "season": 20232024,
+      "sequence": 1,
+      "shootingPctg": 0.041096,
+      "shorthandedGoals": 0,
+      "shorthandedPoints": 0,
+      "shots": 73,
+      "teamCommonName": {
+        "default": "Devils"
+      },
+      "teamName": {
+        "default": "New Jersey Devils",
+        "fr": "Devils du New Jersey"
+      },
+      "teamPlaceNameWithPreposition": {
+        "default": "New Jersey",
+        "fr": "du New Jersey"
+      }
+    },
+    {
+      "assists": 6,
+      "gameTypeId": 2,
+      "gamesPlayed": 13,
+      "goals": 2,
+      "leagueAbbrev": "AHL",
+      "pim": 6,
+      "plusMinus": 1,
+      "points": 8,
+      "season": 20232024,
+      "sequence": 152247,
+      "teamName": {
+        "default": "Utica Comets"
+      }
+    },
+    {
+      "assists": 2,
+      "avgToi": "14:59",
+      "faceoffWinningPctg": 0.0,
+      "gameTypeId": 2,
+      "gameWinningGoals": 1,
+      "gamesPlayed": 27,
+      "goals": 2,
+      "leagueAbbrev": "NHL",
+      "otGoals": 0,
+      "pim": 14,
+      "plusMinus": -10,
+      "points": 4,
+      "powerPlayGoals": 0,
+      "powerPlayPoints": 2,
+      "season": 20242025,
+      "sequence": 1,
+      "shootingPctg": 0.076923,
+      "shorthandedGoals": 0,
+      "shorthandedPoints": 0,
+      "shots": 26,
+      "teamCommonName": {
+        "default": "Devils"
+      },
+      "teamName": {
+        "default": "New Jersey Devils",
+        "fr": "Devils du New Jersey"
+      },
+      "teamPlaceNameWithPreposition": {
+        "default": "New Jersey",
+        "fr": "du New Jersey"
+      }
+    },
+    {
+      "assists": 18,
+      "gameTypeId": 2,
+      "gamesPlayed": 34,
+      "goals": 5,
+      "leagueAbbrev": "AHL",
+      "pim": 12,
+      "plusMinus": 7,
+      "points": 23,
+      "season": 20242025,
+      "sequence": 152247,
+      "teamName": {
+        "default": "Utica Comets"
+      }
+    },
+    {
+      "assists": 1,
+      "avgToi": "20:40",
+      "faceoffWinningPctg": 0.0,
+      "gameTypeId": 3,
+      "gameWinningGoals": 1,
+      "gamesPlayed": 4,
+      "goals": 1,
+      "leagueAbbrev": "NHL",
+      "otGoals": 1,
+      "pim": 2,
+      "plusMinus": 3,
+      "points": 2,
+      "powerPlayGoals": 0,
+      "powerPlayPoints": 0,
+      "season": 20242025,
+      "sequence": 1,
+      "shootingPctg": 0.166667,
+      "shorthandedGoals": 0,
+      "shorthandedPoints": 0,
+      "shots": 6,
+      "teamCommonName": {
+        "default": "Devils"
+      },
+      "teamName": {
+        "default": "New Jersey Devils",
+        "fr": "Devils du New Jersey"
+      },
+      "teamPlaceNameWithPreposition": {
+        "default": "New Jersey",
+        "fr": "du New Jersey"
+      }
+    }
+  ],
+  "currentTeamRoster": [
+    {
+      "playerId": 8474596,
+      "lastName": {
+        "default": "Allen"
+      },
+      "firstName": {
+        "default": "Jake"
+      },
+      "playerSlug": "jake-allen-8474596"
+    },
+    {
+      "playerId": 8479414,
+      "lastName": {
+        "default": "Bastian"
+      },
+      "firstName": {
+        "default": "Nathan"
+      },
+      "playerSlug": "nathan-bastian-8479414"
+    },
+    {
+      "playerId": 8479407,
+      "lastName": {
+        "default": "Bratt"
+      },
+      "firstName": {
+        "default": "Jesper"
+      },
+      "playerSlug": "jesper-bratt-8479407"
+    },
+    {
+      "playerId": 8483429,
+      "lastName": {
+        "default": "Casey"
+      },
+      "firstName": {
+        "default": "Seamus"
+      },
+      "playerSlug": "seamus-casey-8483429"
+    },
+    {
+      "playerId": 8479395,
+      "lastName": {
+        "default": "Cholowski"
+      },
+      "firstName": {
+        "default": "Dennis"
+      },
+      "playerSlug": "dennis-cholowski-8479395"
+    },
+    {
+      "playerId": 8481032,
+      "lastName": {
+        "default": "Cotter"
+      },
+      "firstName": {
+        "default": "Paul"
+      },
+      "playerSlug": "paul-cotter-8481032"
+    },
+    {
+      "playerId": 8482076,
+      "lastName": {
+        "default": "Daws"
+      },
+      "firstName": {
+        "default": "Nico"
+      },
+      "playerSlug": "nico-daws-8482076"
+    },
+    {
+      "playerId": 8475455,
+      "lastName": {
+        "default": "Dillon"
+      },
+      "firstName": {
+        "default": "Brenden"
+      },
+      "playerSlug": "brenden-dillon-8475455"
+    },
+    {
+      "playerId": 8475413,
+      "lastName": {
+        "default": "Dowling"
+      },
+      "firstName": {
+        "default": "Justin"
+      },
+      "playerSlug": "justin-dowling-8475413"
+    },
+    {
+      "playerId": 8475208,
+      "lastName": {
+        "default": "Dumoulin"
+      },
+      "firstName": {
+        "default": "Brian"
+      },
+      "playerSlug": "brian-dumoulin-8475208"
+    },
+    {
+      "playerId": 8481518,
+      "lastName": {
+        "default": "Foote"
+      },
+      "firstName": {
+        "default": "Nolan"
+      },
+      "playerSlug": "nolan-foote-8481518"
+    },
+    {
+      "playerId": 8479996,
+      "lastName": {
+        "default": "Glass"
+      },
+      "firstName": {
+        "default": "Cody"
+      },
+      "playerSlug": "cody-glass-8479996"
+    },
+    {
+      "playerId": 8483531,
+      "lastName": {
+        "default": "Halonen"
+      },
+      "firstName": {
+        "default": "Brian"
+      },
+      "playerSlug": "brian-halonen-8483531"
+    },
+    {
+      "playerId": 8476462,
+      "lastName": {
+        "default": "Hamilton"
+      },
+      "firstName": {
+        "default": "Dougie"
+      },
+      "playerSlug": "dougie-hamilton-8476462"
+    },
+    {
+      "playerId": 8482635,
+      "lastName": {
+        "default": "Hardman"
+      },
+      "firstName": {
+        "default": "Mike"
+      },
+      "playerSlug": "mike-hardman-8482635"
+    },
+    {
+      "playerId": 8475287,
+      "lastName": {
+        "default": "Haula"
+      },
+      "firstName": {
+        "default": "Erik"
+      },
+      "playerSlug": "erik-haula-8475287"
+    },
+    {
+      "playerId": 8480002,
+      "lastName": {
+        "default": "Hischier"
+      },
+      "firstName": {
+        "default": "Nico"
+      },
+      "playerSlug": "nico-hischier-8480002"
+    },
+    {
+      "playerId": 8481559,
+      "lastName": {
+        "default": "Hughes"
+      },
+      "firstName": {
+        "default": "Jack"
+      },
+      "playerSlug": "jack-hughes-8481559"
+    },
+    {
+      "playerId": 8482684,
+      "lastName": {
+        "default": "Hughes"
+      },
+      "firstName": {
+        "default": "Luke"
+      },
+      "playerSlug": "luke-hughes-8482684"
+    },
+    {
+      "playerId": 8480192,
+      "lastName": {
+        "default": "Kovacevic"
+      },
+      "firstName": {
+        "default": "Johnathan"
+      },
+      "playerSlug": "johnathan-kovacevic-8480192"
+    },
+    {
+      "playerId": 8477508,
+      "lastName": {
+        "default": "Lazar"
+      },
+      "firstName": {
+        "default": "Curtis"
+      },
+      "playerSlug": "curtis-lazar-8477508"
+    },
+    {
+      "playerId": 8481594,
+      "lastName": {
+        "default": "L\u00e9gar\u00e9"
+      },
+      "firstName": {
+        "default": "Nathan"
+      },
+      "playerSlug": "nathan-l\u00e9gar\u00e9-8481594"
+    },
+    {
+      "playerId": 8477073,
+      "lastName": {
+        "default": "MacDermid"
+      },
+      "firstName": {
+        "default": "Kurtis"
+      },
+      "playerSlug": "kurtis-macdermid-8477073"
+    },
+    {
+      "playerId": 8474593,
+      "lastName": {
+        "default": "Markstrom",
+        "cs": "Markstr\u00f6m",
+        "fi": "Markstr\u00f6m",
+        "sk": "Markstr\u00f6m",
+        "sv": "Markstr\u00f6m"
+      },
+      "firstName": {
+        "default": "Jacob"
+      },
+      "playerSlug": "jacob-markstrom-8474593"
+    },
+    {
+      "playerId": 8483397,
+      "lastName": {
+        "default": "McLaughlin"
+      },
+      "firstName": {
+        "default": "Marc"
+      },
+      "playerSlug": "marc-mclaughlin-8483397"
+    },
+    {
+      "playerId": 8478414,
+      "lastName": {
+        "default": "Meier"
+      },
+      "firstName": {
+        "default": "Timo"
+      },
+      "playerSlug": "timo-meier-8478414"
+    },
+    {
+      "playerId": 8482110,
+      "lastName": {
+        "default": "Mercer"
+      },
+      "firstName": {
+        "default": "Dawson"
+      },
+      "playerSlug": "dawson-mercer-8482110"
+    },
+    {
+      "playerId": 8483495,
+      "lastName": {
+        "default": "Nemec"
+      },
+      "firstName": {
+        "default": "Simon",
+        "cs": "\u0160imon",
+        "sk": "\u0160imon"
+      },
+      "playerSlug": "simon-nemec-8483495"
+    },
+    {
+      "playerId": 8476474,
+      "lastName": {
+        "default": "Noesen"
+      },
+      "firstName": {
+        "default": "Stefan"
+      },
+      "playerSlug": "stefan-noesen-8476474"
+    },
+    {
+      "playerId": 8476292,
+      "lastName": {
+        "default": "Palat",
+        "cs": "Pal\u00e1t",
+        "sk": "Pal\u00e1t"
+      },
+      "firstName": {
+        "default": "Ondrej",
+        "cs": "Ond\u0159ej",
+        "sk": "Ond\u0159ej"
+      },
+      "playerSlug": "ondrej-palat-8476292"
+    },
+    {
+      "playerId": 8477488,
+      "lastName": {
+        "default": "Pesce"
+      },
+      "firstName": {
+        "default": "Brett"
+      },
+      "playerSlug": "brett-pesce-8477488"
+    },
+    {
+      "playerId": 8483659,
+      "lastName": {
+        "default": "Poulter"
+      },
+      "firstName": {
+        "default": "Isaac"
+      },
+      "playerSlug": "isaac-poulter-8483659"
+    },
+    {
+      "playerId": 8478399,
+      "lastName": {
+        "default": "Siegenthaler"
+      },
+      "firstName": {
+        "default": "Jonas"
+      },
+      "playerSlug": "jonas-siegenthaler-8478399"
+    },
+    {
+      "playerId": 8478466,
+      "lastName": {
+        "default": "Sprong"
+      },
+      "firstName": {
+        "default": "Daniel"
+      },
+      "playerSlug": "daniel-sprong-8478466"
+    },
+    {
+      "playerId": 8475193,
+      "lastName": {
+        "default": "Tatar"
+      },
+      "firstName": {
+        "default": "Tomas",
+        "cs": "Tom\u00e1\u0161",
+        "sk": "Tom\u00e1\u0161"
+      },
+      "playerSlug": "tomas-tatar-8475193"
+    },
+    {
+      "playerId": 8482873,
+      "lastName": {
+        "default": "Vilen"
+      },
+      "firstName": {
+        "default": "Topias"
+      },
+      "playerSlug": "topias-vilen-8482873"
+    },
+    {
+      "playerId": 8478841,
+      "lastName": {
+        "default": "White"
+      },
+      "firstName": {
+        "default": "Colton"
+      },
+      "playerSlug": "colton-white-8478841"
+    }
+  ]
+}

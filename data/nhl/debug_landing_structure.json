@@ -1,0 +1,57 @@
+{
+  "top_level_keys": [
+    "id",
+    "season",
+    "gameType",
+    "limitedScoring",
+    "gameDate",
+    "venue",
+    "venueLocation",
+    "startTimeUTC",
+    "easternUTCOffset",
+    "venueUTCOffset",
+    "venueTimezone",
+    "periodDescriptor",
+    "tvBroadcasts",
+    "gameState",
+    "gameScheduleState",
+    "specialEvent",
+    "awayTeam",
+    "homeTeam",
+    "shootoutInUse",
+    "maxPeriods",
+    "regPeriods",
+    "otInUse",
+    "tiesInUse",
+    "summary",
+    "clock"
+  ],
+  "homeTeam_keys": [
+    "id",
+    "commonName",
+    "abbrev",
+    "placeName",
+    "placeNameWithPreposition",
+    "score",
+    "sog",
+    "logo",
+    "darkLogo"
+  ],
+  "awayTeam_keys": [
+    "id",
+    "commonName",
+    "abbrev",
+    "placeName",
+    "placeNameWithPreposition",
+    "score",
+    "sog",
+    "logo",
+    "darkLogo"
+  ],
+  "summary_keys": [
+    "scoring",
+    "shootout",
+    "threeStars",
+    "penalties"
+  ]
+}

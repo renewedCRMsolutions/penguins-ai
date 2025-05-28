@@ -1,0 +1,73 @@
+[
+  {
+    "teamId": 1,
+    "playerId": 8474593,
+    "firstName": {
+      "default": "Jacob"
+    },
+    "lastName": {
+      "default": "Markstrom",
+      "cs": "Markstr\u00f6m",
+      "fi": "Markstr\u00f6m",
+      "sk": "Markstr\u00f6m",
+      "sv": "Markstr\u00f6m"
+    },
+    "sweaterNumber": 25,
+    "positionCode": "G",
+    "headshot": "https://assets.nhle.com/mugs/nhl/20242025/NJD/8474593.png"
+  },
+  {
+    "teamId": 1,
+    "playerId": 8474596,
+    "firstName": {
+      "default": "Jake"
+    },
+    "lastName": {
+      "default": "Allen"
+    },
+    "sweaterNumber": 34,
+    "positionCode": "G",
+    "headshot": "https://assets.nhle.com/mugs/nhl/20242025/NJD/8474596.png"
+  },
+  {
+    "teamId": 1,
+    "playerId": 8475193,
+    "firstName": {
+      "default": "Tomas",
+      "cs": "Tom\u00e1\u0161",
+      "sk": "Tom\u00e1\u0161"
+    },
+    "lastName": {
+      "default": "Tatar"
+    },
+    "sweaterNumber": 90,
+    "positionCode": "L",
+    "headshot": "https://assets.nhle.com/mugs/nhl/20242025/NJD/8475193.png"
+  },
+  {
+    "teamId": 1,
+    "playerId": 8475287,
+    "firstName": {
+      "default": "Erik"
+    },
+    "lastName": {
+      "default": "Haula"
+    },
+    "sweaterNumber": 56,
+    "positionCode": "L",
+    "headshot": "https://assets.nhle.com/mugs/nhl/20242025/NJD/8475287.png"
+  },
+  {
+    "teamId": 1,
+    "playerId": 8475455,
+    "firstName": {
+      "default": "Brenden"
+    },
+    "lastName": {
+      "default": "Dillon"
+    },
+    "sweaterNumber": 5,
+    "positionCode": "D",
+    "headshot": "https://assets.nhle.com/mugs/nhl/20242025/NJD/8475455.png"
+  }
+]

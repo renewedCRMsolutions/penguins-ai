@@ -5,7 +5,8 @@
       "Bash(grep:*)",
       "Bash(sed:*)",
       "Bash(ls:*)",
-      "Bash(source:*)"
+      "Bash(source:*)",
+      "Bash(/usr/bin/python3 -m flake8:*)"
     ],
     "deny": []
   }
